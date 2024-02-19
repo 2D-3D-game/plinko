@@ -28,7 +28,7 @@ export default defineConfig({
     port: 2468,
     proxy: {
       "/api": {
-        target: "https://www.tfdjqp.com",
+        target: "https://a01.uat.today",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
         ws: true,

@@ -21,7 +21,7 @@ export function initWujie(){
       /** balance is the currency balance currently selected by the user */
       "balance": "0.00",
       /** token is used to determine whether to log in */
-      "token": "t:hBADD97nE3The0CEefjwO8Jf",
+      "token": "t:2s969vUTq72EwW6LjUvl0SlL",
       "getBalanceData": () => {},
       "openNotify": () => {},
       /** 汇率 */

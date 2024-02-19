@@ -146,7 +146,7 @@
     <button :style="{ background: 'transparent', border: 'none' }" @click="showFairness">
       <span :class="'footer-span'">{{ $t("plinko_fairness") }}</span>
     </button>
-    <RealTimeStatistics />
+    <!-- <RealTimeStatistics /> -->
   </div>
 </template>
 

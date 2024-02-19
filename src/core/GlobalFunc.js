@@ -201,9 +201,9 @@ export function GlobalFunc() {
   };
 
   const initialDrawValue = {
-    ParticleRadius: 13,
+    ParticleRadius: 16,
     GapWidth: 10,
-    PointRadius: 7.5,
+    PointRadius: 8,
     MapGap: 3,
   };
 

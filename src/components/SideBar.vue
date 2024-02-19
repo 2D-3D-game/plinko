@@ -28,12 +28,15 @@
       <div :class="'betamountcontainer'">
         <div :class="'spanstyle'">{{ $t("plinko_amount") }}</div>
         <div :class="'spanstyle'" :style="{ fontSize: '12px' }">
-          {{currencyPrefix}}<span :style="{ fontFamily: 'PingFang SC' }">{{ amountMulRate }}</span>
+          {{ currencyPrefix
+          }}<span :style="{ fontFamily: 'PingFang SC' }">{{
+            amountMulRate
+          }}</span>
         </div>
       </div>
       <!-- 投注金额 -->
       <div :class="'betAmountContainer'">
-        <div :class="['tooltip']" style="position: static;">
+        <div :class="['tooltip']" style="position: static">
           <input
             :class="[
               'betAmountInput',
@@ -122,7 +125,7 @@
         :class="'arrow-down'"
       />
       <select
-        :class="['baseStyle',isBetting || isAutoBetting ? 'disabled' : '']"
+        :class="['baseStyle', isBetting || isAutoBetting ? 'disabled' : '']"
         v-model="rows"
         @change="changeState"
         :disabled="isBetting || isAutoBetting"
@@ -135,16 +138,33 @@
     </div>
     <div :class="['betNumberContainer']" v-if="isAutoButton">
       <div :class="'spanstyle'">{{ $t("plinko_betNumbers") }}</div>
-      <input
-        :class="['baseStyle', isAutoBetting ? 'disabled' : '']"
-        v-model="numberofbet"
-        placeholder="0"
-        type="number"
-        min="0"
-        @change="changeState"
-        :disabled="isAutoBetting"
-        :style="{ fontFamily: 'Inter', fontWeight: 600,paddingRight: isInfinitive ? '5px':'0px'}"
-      />
+      <div :class="['tooltip']">
+        <input
+          :class="['baseStyle', isAutoBetting ? 'disabled' : '']"
+          v-model="numberofbet"
+          type="number"
+          min="0"
+          max="999999999"
+          @change="changeState"
+          @input="
+            validNumberofBet = numberofbet > 999999999 ? true : false;
+            numberofbet = numberofbet > 999999999 ? 999999999 : numberofbet;
+          "
+          @focusout="validNumberofBet = false"
+          :disabled="isAutoBetting"
+          :style="{
+            fontFamily: 'Inter',
+            fontWeight: 600,
+            paddingRight: isInfinitive ? '5px' : '0px',
+          }"
+        />
+        <span
+          v-if="validNumberofBet"
+          class="tooltiptext"
+          style=" visibility: visible;left:50%;transform: translateX(-50%); }"
+          >{{ $t("plinko_maximum_auto_bet_number") }}</span
+        >
+      </div>
       <img
         v-show="isInfinitive"
         :src="'./image/infinitive.svg'"
@@ -157,11 +177,12 @@
     <!-- 投注 -->
     <div :ref="'betbuttonorder'" :class="'betbuttonorder'">
       <button
-        class="baseStyle betButton" :class="{ betBtnDisabled : betBtnDisabled }"
+        class="baseStyle betButton"
+        :class="{ betBtnDisabled: betBtnDisabled }"
         @click="bet"
         :disabled="betLoading"
       >
-        <span v-show="isManualButton ? !betLoading: true">{{
+        <span v-show="isManualButton ? !betLoading : true">{{
           isManualButton
             ? $t("plinko_bet")
             : isAutoBetting
@@ -240,7 +261,7 @@
 </style>
 
 <script>
-import { ref, onMounted, onUnmounted, computed,watch } from "vue";
+import { ref, onMounted, onUnmounted, computed, watch } from "vue";
 import axios from "axios";
 import { store, mutations } from "../core/Store";
 import { Plinko } from "../core/Plinko";
@@ -250,8 +271,9 @@ import { useAppStore } from "~/store/app";
 import { storeToRefs } from "pinia";
 import { ApiGameBetting } from "~/http/api";
 import { useRequest } from "vue-request";
-import { bettingBus } from '~/core/bus'
-import { mul,toFixed }from '~/utils/number'
+import { bettingBus } from "~/core/bus";
+import { mul, toFixed } from "~/utils/number";
+import { NineSlicePlane } from "pixi.js";
 
 export default {
   computed: {
@@ -268,24 +290,25 @@ export default {
   setup() {
     const appStore = useAppStore();
     const {
-       token,
-       isLogin,
-       currency_id,
-       currentBalance,
-       rate,
-       currencyPrefix,
-       decimalNum
-      } = storeToRefs(appStore);
+      token,
+      isLogin,
+      currency_id,
+      currentBalance,
+      rate,
+      currencyPrefix,
+      decimalNum,
+    } = storeToRefs(appStore);
     const { t } = useI18n();
 
     const isManualButton = ref(true);
     const isAutoButton = ref(false);
     const isAutoBetting = ref(false);
     const isError = ref(false);
-    const amount = ref(toFixed(0,decimalNum.value));
-    const level = ref(localStorage.getItem('PLINKO_DEFAULT_LEVEL')??'middle');
+    const amount = ref(toFixed(0, decimalNum.value));
+    const level = ref(localStorage.getItem("PLINKO_DEFAULT_LEVEL") ?? "middle");
     const rows = ref("16");
     const numberofbet = ref(0);
+    const validNumberofBet = ref(false);
     const isMaximum = ref(false);
     const rowValues = ["8", "9", "10", "11", "12", "13", "14", "15", "16"];
     let intervalId;
@@ -299,11 +322,14 @@ export default {
         return store.volumn;
       })
     );
-    const isAmountOverBalance = computed(()=> +amount.value > +currentBalance.value)
-    const isBetting = computed(()=> bettingCount.value > 0)
-    const isInfinitive = computed(()=> numberofbet.value === 0)
-    const amountMulRate = computed(()=> toFixed(+mul(+amount.value,+rate.value)) )
-
+    const isAmountOverBalance = computed(
+      () => +amount.value > +currentBalance.value
+    );
+    const isBetting = computed(() => bettingCount.value > 0);
+    const isInfinitive = computed(() => numberofbet.value === 0);
+    const amountMulRate = computed(() =>
+      toFixed(+mul(+amount.value, +rate.value))
+    );
 
     const plinko = Plinko(document.body.querySelector("#canvas"));
     plinko.map();
@@ -346,19 +372,19 @@ export default {
 
           if (isAutoBetting.value && numberofbet.value > 0) {
             numberofbet.value -= 1;
-            if(numberofbet.value === 0){
-              stopAutoBetting()
+            if (numberofbet.value === 0) {
+              stopAutoBetting();
             }
           }
         },
       }
     );
-    const betBtnDisabled = computed(()=> {
-      if(isLogin.value){
-        return betLoading.value || isAmountOverBalance.value
+    const betBtnDisabled = computed(() => {
+      if (isLogin.value) {
+        return betLoading.value || isAmountOverBalance.value;
       }
-      return false
-    })
+      return false;
+    });
 
     const bet = () => {
       // token
@@ -391,7 +417,9 @@ export default {
       isAutoBetting.value = true;
       window.miniGameWujie.props.openNotify({
         type: "auto",
-        message: `<span style="color:#fff;font-weight:600;">${t("plinko_autobetalert1")}</span>`,
+        message: `<span style="color:#fff;font-weight:600;">${t(
+          "plinko_autobetalert1"
+        )}</span>`,
       });
 
       clearInterval(intervalId);
@@ -408,7 +436,9 @@ export default {
       isAutoBetting.value = false;
       window.miniGameWujie.props.openNotify({
         type: "auto",
-        message: `<span style="color:#fff;font-weight:600;">${t("plinko_autobetalert2")}</span>`,
+        message: `<span style="color:#fff;font-weight:600;">${t(
+          "plinko_autobetalert2"
+        )}</span>`,
       });
       clearInterval(intervalId);
     };
@@ -446,26 +476,26 @@ export default {
     };
 
     const changeAmount = () => {
-      amount.value = toFixed(+amount.value,decimalNum.value)
+      amount.value = toFixed(+amount.value, decimalNum.value);
       mutations.updatePlinko(amount.value, rows.value, level.value);
     };
     const handleDataUpdate = (data) => {
       if (data === 1 || data === 2) {
         playMp3();
         bettingCount.value = bettingCount.value - 1;
-        window.miniGameWujie.props.getBalanceData()
+        window.miniGameWujie.props.getBalanceData();
       }
     };
 
-    watch(decimalNum,()=>{
-      amount.value = toFixed(0,decimalNum.value)
-    })
-    watch(level,(a) => {
-      localStorage.setItem('PLINKO_DEFAULT_LEVEL',a)
-    })
+    watch(decimalNum, () => {
+      amount.value = toFixed(0, decimalNum.value);
+    });
+    watch(level, (a) => {
+      localStorage.setItem("PLINKO_DEFAULT_LEVEL", a);
+    });
 
     onMounted(() => {
-      bettingBus.on(handleDataUpdate)
+      bettingBus.on(handleDataUpdate);
       window.addEventListener("resize", handleResize);
       plinko.GetSettings(level.value, rows.value);
 
@@ -475,11 +505,11 @@ export default {
         canvasArr[i].style.touchAction = "manipulation";
       }
 
-      localStorage.setItem('PLINKO_DEFAULT_LEVEL',level.value)
+      localStorage.setItem("PLINKO_DEFAULT_LEVEL", level.value);
     });
 
     onUnmounted(() => {
-      bettingBus.off(handleDataUpdate)
+      bettingBus.off(handleDataUpdate);
       window.removeEventListener("resize", handleResize);
     });
 
@@ -508,6 +538,7 @@ export default {
       currencyPrefix,
       amountMulRate,
       betBtnDisabled,
+      validNumberofBet,
       activeButton,
       selectInput,
       betAmountTimes,

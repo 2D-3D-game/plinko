@@ -98,3 +98,4 @@ plinko_fairness_pop_up_risk_level_3: Level3
 aaa: 你好
 dice_auto_bet_auto_bet_start: 自动投注开始
 dice_auto_bet_auto_bet_end: 自动投注结束
+plinko_maximum_auto_bet_number: "Maximum is \"999999999\""
