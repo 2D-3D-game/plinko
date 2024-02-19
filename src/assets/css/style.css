@@ -1,0 +1,348 @@
+*{
+  user-select:none;
+  padding: 0;
+  margin: 0;
+}
+input{
+  user-select:auto;
+  border-radius:0;
+}
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  /* min-width: 320px; */
+  background-color: #1a2c38;
+  color: "#FFF";
+  font-family: PingFang SC;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+#myapp {
+  margin: auto;
+  width: 100%;
+}
+.mycontainer {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 3px solid #213743;
+  position: relative;
+  max-width: 1200px;
+}
+
+.mycontainer .app-container {
+  width: 300px;
+  height: 52vw;
+  max-height: 630px;
+  order: 1;
+  min-width: 300px;
+}
+
+.canvas-container {
+  width: calc(100% - 300px);
+  max-width: 900px;
+  height: 52vw;
+  max-height: 630px;
+  color: #fff;
+  border-radius: 0px 8px 0px 0px;
+  background: #0f212e;
+  order: 2;
+  min-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+button {
+  cursor: pointer;
+}
+button > span,
+button > img {
+  display: inline-block;
+  transition: transform 0.1s ease;
+}
+
+button:active > span,
+button:active > img {
+  transform: scale(0.95);
+}
+
+.canvas {
+  width: 800px;
+  height: 52vw;
+  max-height: 630px;
+  margin: auto;
+  border-radius: 0px 8px 0px 0px;
+  background: #0f212e;
+  min-width: 300px;
+}
+
+.overlay-container {
+  position: absolute;
+  bottom: 8.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 610px;
+  height: 90px;
+  background-color: #213743;
+  pointer-events: none;
+  border-radius: 4px;
+  border: none;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1em;
+  display: flex;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px -1px rgba(27, 23, 23, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.12);
+}
+
+.profit-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profit-input {
+  height: 40px;
+  width: 100%;
+
+  background-color: #304554;
+  border: 2px solid #304554;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+
+  color: #fff;
+  font-family: PingFang SC;
+  font-size: 14px;
+  font-weight: 600;
+
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a2c38;
+  background: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #304554;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2f4552;
+}
+
+.tooltip {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 10%;
+  font-family: PingFang SC;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.12);
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.stooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.stooltip .tooltiptext {
+  visibility: hidden;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.5rem;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 1;
+  font-family: PingFang SC;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  bottom: 150%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.12);
+}
+
+.stooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+.stooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.stooltip .tooltiptext1 {
+  visibility: hidden;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 5px;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 999;
+  font-family: PingFang SC;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.12);
+}
+
+.stooltip .tooltiptext1::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+.stooltip .tooltiptext1-active {
+  visibility: visible;
+}
+.responsive {
+  position: relative;
+  width: 100%;
+}
+@media screen and (min-width: 1101px) {
+  .mycontainer {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .responsive {
+    width: 100%;
+  }
+  .mycontainer {
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+
+  .mycontainer .app-container {
+    width: 400px;
+    height: 100%;
+    order: 2;
+    position: relative;
+  }
+
+  .canvas-container {
+    width: 400px;
+    height: 310px;
+    min-width: 400px;
+    border-radius: 8px 8px 0px 0px;
+    order: 1;
+  }
+
+  .canvas {
+    width: 400px;
+    height: 310px;
+    border-radius: 8px 8px 0px 0px;
+  }
+  .overlay-container {
+    width: 300px;
+    padding: 1em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .mycontainer {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  .mycontainer .app-container {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  .canvas-container {
+    width: 100%;
+    height: 77.5vw;
+    min-height: 225px;
+    min-width: 300px;
+  }
+
+  .canvas {
+    width: 360px;
+    height: 270px;
+    min-height: 225px;
+    min-width: 300px;
+  }
+  .overlay-container {
+    top: 44vw;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .canvas {
+    width: 300px;
+    height: 225px;
+  }
+  .overlay-container {
+    top: 39vw;
+    width: 250px;
+  }
+}
