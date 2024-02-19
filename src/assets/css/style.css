@@ -1,11 +1,11 @@
-*{
-  user-select:none;
+* {
+  user-select: none;
   padding: 0;
   margin: 0;
 }
-input{
-  user-select:auto;
-  border-radius:0;
+input {
+  user-select: auto;
+  border-radius: 0;
 }
 body {
   margin: 0;
@@ -320,14 +320,14 @@ button:active > img {
 
   .canvas-container {
     width: 100%;
-    height: 70vw;
-    min-height: 270px;
+    height: calc(70vw + 13px);
+    min-height: 276px;
     min-width: 300px;
   }
 
   .canvas {
     width: 360px;
-    height: 270px;
+    height: 276px;
     min-height: 225px;
     min-width: 300px;
   }
