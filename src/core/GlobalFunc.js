@@ -50,6 +50,13 @@ export function GlobalFunc() {
     }
   };
 
+  const getColorFromIndexAndRow = (index, row) => {
+    return {
+      color: colors["_" + row][index],
+      shadow: shadows["_" + row][index],
+    };
+  };
+
   const baskets = {
     low: {
       _8: [5.6, 2.1, 1.1, 1, 0.5, 1, 1.1, 2.1, 5.6],
@@ -215,5 +222,6 @@ export function GlobalFunc() {
     initialDrawValue,
     selectFromText,
     generateRandomNumber,
+    getColorFromIndexAndRow,
   };
 }

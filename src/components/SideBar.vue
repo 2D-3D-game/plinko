@@ -260,7 +260,7 @@
 </style>
 
 <script>
-import { ref, onMounted, onUnmounted, computed, watch } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed, watch } from "vue";
 import axios from "axios";
 import { store, mutations } from "../core/Store";
 import { Plinko } from "../core/Plinko";
@@ -273,6 +273,9 @@ import { useRequest } from "vue-request";
 import { bettingBus } from "~/core/bus";
 import { mul, toFixed } from "~/utils/number";
 import { NineSlicePlane } from "pixi.js";
+
+// static limit
+const autoBetTimesMax = 180
 
 export default {
   computed: {
@@ -316,6 +319,8 @@ export default {
     const statisticsComponent = ref(null);
     const amountorder = ref(null);
     const betbuttonorder = ref(null);
+    const autoBetTimesCount = ref(0)
+    const previousWidth = ref(window.innerWidth);
     const volumn = ref(
       computed(() => {
         return store.volumn;
@@ -372,6 +377,13 @@ export default {
           if (isAutoBetting.value && numberofbet.value > 0) {
             numberofbet.value -= 1;
             if (numberofbet.value === 0) {
+              stopAutoBetting();
+            }
+          }
+          // Unlimited automatic betting limit time stop
+          else if(isAutoBetting.value && numberofbet.value === 0){
+            autoBetTimesCount.value += 1
+            if(autoBetTimesCount.value >= autoBetTimesMax){
               stopAutoBetting();
             }
           }
@@ -432,6 +444,7 @@ export default {
     };
 
     const stopAutoBetting = () => {
+      autoBetTimesCount.value = 0
       isAutoBetting.value = false;
       window.miniGameWujie.props.openNotify({
         type: "auto",
@@ -468,10 +481,13 @@ export default {
 
     const handleResize = () => {
       let newWidth = window.innerWidth;
-      if (newWidth < 1200) {
-        changeOrder();
+      if (newWidth !== previousWidth.value) {
+        previousWidth.value = newWidth;
+        if (newWidth < 1200) {
+          changeOrder();
+        }
+        plinko.map();
       }
-      plinko.map();
     };
 
     const changeAmount = () => {
@@ -506,11 +522,11 @@ export default {
 
       localStorage.setItem("PLINKO_DEFAULT_LEVEL", level.value);
     });
-
-    onUnmounted(() => {
+    onBeforeUnmount(() => {
+      clearInterval(intervalId);
       bettingBus.off(handleDataUpdate);
       window.removeEventListener("resize", handleResize);
-    });
+    })
 
     return {
       isManualButton,
