@@ -45,7 +45,7 @@
             </button>
             <span
               :class="['tooltiptext1', copied1 ? 'tooltiptext1-active' : '']"
-              >{{ $t("plinko_copyId") }}</span
+              >{{ $t("plinko_copyId_share") }}</span
             >
           </div>
           <div :class="'stooltip'">

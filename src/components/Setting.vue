@@ -261,7 +261,7 @@ export default {
 
     const showFairness = () => {
       // mutations.seedDetail();
-      mutations.showFairness();
+      // mutations.showFairness();
       if(!isLogin.value){
         return window.miniGameWujie.bus.$emit('openRegister')
       }

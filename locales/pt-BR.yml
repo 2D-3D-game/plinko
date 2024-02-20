@@ -1,9 +1,8 @@
-
 dice_auto_bet_auto_bet_end: Aposta Automática finalizada
 dice_auto_bet_auto_bet_start: Aposta Automática iniciada
-plinko_after_bet_pop_up_risk_level_1: level1
-plinko_after_bet_pop_up_risk_level_2: level2
-plinko_after_bet_pop_up_risk_level_3: level3
+plinko_after_bet_pop_up_risk_level_1: Baixo
+plinko_after_bet_pop_up_risk_level_2: Médio
+plinko_after_bet_pop_up_risk_level_3: Alto
 plinko_amount: Valor da Aposta
 plinko_animation: Animação
 plinko_auto: Automático
@@ -16,7 +15,7 @@ plinko_betNumbers: Número de Apostas
 plinko_betamountalert: Não pode apostar mais do que seu saldo!
 plinko_bigwins: Grande Vencedor
 plinko_challenges: Desafio
-plinko_copyId: Copiado com sucesso!
+plinko_copyId: Copiado, compartilhe online!
 plinko_copyText: Copiado!
 plinko_date: Data
 plinko_description: Descrição
@@ -81,13 +80,13 @@ plinko_right2: Derrota
 plinko_risk: Risco
 plinko_rows: Linhas
 plinko_rules: Regras do jogo
-plinko_scoreboard_at: de
+plinko_scoreboard_at: às
 plinko_scoreboard_multi: Multiplicador
-plinko_scoreboard_on: 'no'
-plinko_scoreboard_payout: Valor do pagamento
-plinko_scoreboard_play: Ir para Plinko
-plinko_scoreboard_provable: Justiça comprovável
-plinko_scoreboard_time: 'Apostador:'
+plinko_scoreboard_on: 'em'
+plinko_scoreboard_payout: Pagamento
+plinko_scoreboard_play: Jogar Plinko
+plinko_scoreboard_provable: Justiça Comprovada
+plinko_scoreboard_time: 'Feito por:'
 plinko_showPro_chance: Chance
 plinko_showPro_profit: Lucro na Vitória
 plinko_statistics: Estatísticas em tempo real
@@ -107,3 +106,4 @@ plinko_verifyTexts_clientSeed: Semente do Cliente
 plinko_verifyTexts_game: Jogo
 plinko_verifyTexts_nonce: Nº da Aposta
 plinko_verifyTexts_serverSeed: Semente do Servidor
+plinko_copyId_share: Copiado, compartilhe no chat!

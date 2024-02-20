@@ -1,4 +1,3 @@
-
 dice_auto_bet_auto_bet_end: Tự động cược kết thúc
 dice_auto_bet_auto_bet_start: Thành công
 plinko_after_bet_pop_up_risk_level_1: level1
@@ -16,7 +15,7 @@ plinko_betNumbers: Số Cược
 plinko_betamountalert: Đặt cược của bạn không thể lớn hơn số dư của bạn!
 plinko_bigwins: Người chơi lớn
 plinko_challenges: Thách đấu
-plinko_copyId: Đã sao chép, chia sẻ!
+plinko_copyId: Đã sao chép, chia sẻ trong kênh chat!
 plinko_copyText: Sao chép thành công!
 plinko_date: Ngày
 plinko_description: Mô tả
@@ -46,10 +45,8 @@ plinko_hotkeyInfo: Khi phím tắt được bật, nó sẽ ảnh hưởng đế
   nhận tương tác phím bị khóa của các trò chơi khác nhau trước khi sử dụng.
 plinko_hotkeyUse: Bật phím tắt
 plinko_info: Thông tin Trò chơi
-plinko_info1: 1. Mô hình phân bổ sẽ xác định các khoản thanh toán tiềm năng khác nhau
-  thông qua rủi ro và hệ số.
-plinko_info2: 2. Không xoay thiết bị hoặc màn hình của bạn để chống lại trọng lực
-  trong khi trò chơi đang diễn ra.
+plinko_info1: 1. Các chế độ được cấu hình thông qua rủi ro và hệ số xác định các khoản thanh toán tiềm năng khác nhau.
+plinko_info2: 2. Không hack trọng lực bằng cách xoay thiết bị hoặc màn hình trong khi chơi.
 plinko_keyboard: Phím tắt
 plinko_left1: Lợi nhuận
 plinko_left2: Tổng cược
@@ -62,17 +59,17 @@ plinko_manual: Thủ công
 plinko_max: Giá trị lớn nhất
 plinko_maxquestion1: Bạn có chắc chắn muốn bật nút đặt cược tối đa không?
 plinko_maxquestion2: Bạn có chắc chắn muốn bật nút đặt cược tối đa không?
-plinko_maxvalue: Số tiền đặt cược tối đa
+plinko_maxvalue: Cược Tối Đa
 plinko_multiplier: Hệ số
 plinko_original: Meibo trò chơi nguyên bản
 plinko_payout: Số tiền thanh toán
-plinko_prove_button1: Chuyển động máy chủ của bạn để xác minh đặt cược này
-plinko_prove_button2: Sự công bằng có thể chứng minh được là gì?
+plinko_prove_button1: Xoay cặp hạt giống của bạn để xác minh cược này
+plinko_prove_button2: Thế nào là Chắc Chắn Công Bằng?
 plinko_prove_text1: Hạt giống máy chủ
-plinko_prove_text2: Hạt giống máy chủ (Băm)
-plinko_prove_text3: Hạt giống khách hàng
+plinko_prove_text2: Hạt Giống Máy Chủ (Bảo mật)
+plinko_prove_text3: Hạt Giống Máy Khách
 plinko_prove_text4: Dấu hiệu thực tế
-plinko_prove_value1: Hạt giống không có hiển thị
+plinko_prove_value1: Hạt giống chưa được tiết lộ
 plinko_racespan: Đặt cược và cạnh tranh ngay bây giờ!
 plinko_rank: Xếp hạng
 plinko_right1: Thắng
@@ -106,3 +103,4 @@ plinko_verifyTexts_clientSeed: Hạt giống khách hàng
 plinko_verifyTexts_game: Trò chơi
 plinko_verifyTexts_nonce: Số Cược
 plinko_verifyTexts_serverSeed: Hạt giống máy chủ
+plinko_copyId_share: 分享到聊天室

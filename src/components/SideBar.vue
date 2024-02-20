@@ -352,10 +352,16 @@ export default {
       }
     };
     // play mp3
-    const playMp3 = () => {
-      const audio = new Audio("./audio/bet.mp3");
-      audio.volume = volumn.value / 100;
-      audio.play();
+    const playMp3 = (type) => {
+      if(type === "betStart") {
+        const audio = new Audio("./audio/bet.mp3");
+        audio.volume = volumn.value / 100;
+        audio.play();
+      } else {
+        const audio = new Audio("./audio/basket.mp3");
+        audio.volume = volumn.value / 100;
+        audio.play();
+      }
     };
 
     // 下注
@@ -370,7 +376,7 @@ export default {
       {
         manual: true,
         onSuccess(res) {
-          playMp3();
+          playMp3("betStart");
           plinko.add(res.state.index + 1);
           bettingCount.value = bettingCount.value + 1;
 
@@ -496,7 +502,7 @@ export default {
     };
     const handleDataUpdate = (data) => {
       if (data === 1 || data === 2) {
-        playMp3();
+        playMp3("betEnd");
         bettingCount.value = bettingCount.value - 1;
         window.miniGameWujie.props.getBalanceData();
       }

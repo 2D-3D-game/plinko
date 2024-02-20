@@ -62,7 +62,14 @@
           <img :src="'./image/betting1.svg'" width="16" height="16" alt="Image" :class="'betting-image'"
             v-if="!stateChange" />
           <div :class="'score'" v-if="stateChange">
-            <ResultBlockPlinko row="8" index="0" result="5.6" />
+            <div :class="'rect'" :style="{
+              background: color,
+              boxShadow: `0px 3px 0px 0px ${shadow}`,
+            }">
+              <span :class="'gray-span'" :style="{ color: '#000' }">
+                {{ score }}x
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -212,146 +219,160 @@ import { ref, computed } from "vue";
 import { store, mutations } from "../../core/Store";
 import { GlobalFunc } from "../../core/GlobalFunc";
 import { nanoid } from 'nanoid'
-import ResultBlockPlinko from "../ResultBlockPlinko.vue";
 
 export default {
-    computed: {
-        showFairness() {
-            return store.showFairness;
-        },
+  computed: {
+    showFairness() {
+      return store.showFairness;
     },
-    methods: {
-        closeModal(event) {
-            if (event.target.classList.contains("modal")) {
-                mutations.showFairness();
-            }
-        },
+  },
+  methods: {
+    closeModal(event) {
+      if (event.target.classList.contains("modal")) {
+        mutations.showFairness();
+      }
     },
-    setup() {
-        const buttonType = ref("seed");
-        const nonce = ref(0);
-        const copied1 = ref(false);
-        const copied2 = ref(false);
-        const copied3 = ref(false);
-        const stateChange = ref(false);
-        const game = ref("Plinko");
-        const gameList = ref(['Plinko', 'Dice']);
-        const clientSeed = ref("");
-        const serverSeed = ref("");
-        const level = ref("Middle");
-        const row = ref(16);
-        const score = ref(null);
-        const color = ref(null);
-        const shadow = ref(null);
-        const newClientSeed = ref(nanoid().slice(0, 10));
-        const seedMateTimes = computed(() => store.seedMateTimes);
-        const activeCasinoBets = computed(() => store.active_casino_bets);
-        const copy1 = ref(computed(() => {
-            return store.active_client_seed;
-        }));
-        const copy2 = ref(computed(() => {
-            return store.active_server_seed_hash;
-        }));
-        const copy3 = ref(computed(() => {
-            return store.next_server_seed_hash;
-        }));
-        const hideModal = () => {
-            mutations.showFairness();
-        };
-        const changeType = (req) => {
-            buttonType.value = req;
-        };
-        const changeNonce = (req) => {
-            generateScore();
-            if (req === "plus") {
-                nonce.value = nonce.value + 1;
-            }
-            else {
-                nonce.value = nonce.value - 1;
-                if (nonce.value < 0) {
-                    nonce.value = 0;
-                }
-            }
-        };
-        const copyText = (req) => {
-            let text = "";
-            switch (req) {
-                case "copy1":
-                    text = copy1.value;
-                    copied1.value = true;
-                    setTimeout(() => {
-                        copied1.value = false;
-                    }, 1000);
-                    break;
-                case "copy2":
-                    text = copy2.value;
-                    copied2.value = true;
-                    setTimeout(() => {
-                        copied2.value = false;
-                    }, 1000);
-                    break;
-                case "copy3":
-                    text = copy3.value;
-                    copied3.value = true;
-                    setTimeout(() => {
-                        copied3.value = false;
-                    }, 1000);
-                    break;
-            }
-            navigator.clipboard.writeText(text);
-        };
-        const generateScore = () => {
-            if (game.value === "Plinko" && serverSeed.value !== "") {
-                stateChange.value = false;
-                let info = GlobalFunc().generateRandomNumber(row.value, level.value.toLowerCase());
-                const redc = (info.color >> 16) & 255;
-                const greenc = (info.color >> 8) & 255;
-                const bluec = info.color & 255;
-                const reds = (info.shadow >> 16) & 255;
-                const greens = (info.shadow >> 8) & 255;
-                const blues = info.shadow & 255;
-                color.value = `rgb(${redc}, ${greenc}, ${bluec})`;
-                shadow.value = `rgb(${reds}, ${greens}, ${blues})`;
-                score.value = info.value;
-                setTimeout(() => {
-                    stateChange.value = true;
-                }, 300);
-            }
-        };
-        function changeNewClientSeed() {
-            newClientSeed.value = nanoid().slice(0, 10);
+  },
+  setup() {
+    const buttonType = ref("seed");
+    const nonce = ref(0);
+    const copied1 = ref(false);
+    const copied2 = ref(false);
+    const copied3 = ref(false);
+    const stateChange = ref(false);
+    const game = ref("Plinko");
+    const gameList = ref(['Plinko','Dice'])
+    const clientSeed = ref("");
+    const serverSeed = ref("");
+    const level = ref("Middle");
+    const row = ref(16);
+    const score = ref(null);
+    const color = ref(null);
+    const shadow = ref(null);
+    const newClientSeed = ref(nanoid().slice(0,10))
+
+    const seedMateTimes = computed(() => store.seedMateTimes)
+    const activeCasinoBets = computed(() => store.active_casino_bets)
+
+    const copy1 = ref(
+      computed(() => {
+        return store.active_client_seed;
+      })
+    );
+    const copy2 = ref(
+      computed(() => {
+        return store.active_server_seed_hash;
+      })
+    );
+    const copy3 = ref(
+      computed(() => {
+        return store.next_server_seed_hash;
+      })
+    );
+    const hideModal = () => {
+      mutations.showFairness();
+    };
+    const changeType = (req) => {
+      buttonType.value = req;
+    };
+    const changeNonce = (req) => {
+      generateScore();
+      if (req === "plus") {
+        nonce.value = nonce.value + 1;
+      } else {
+        nonce.value = nonce.value - 1;
+        if (nonce.value < 0) {
+          nonce.value = 0;
         }
-        return {
-            buttonType,
-            nonce,
-            copy1,
-            copy2,
-            copy3,
-            copied1,
-            copied2,
-            copied3,
-            stateChange,
-            game,
-            gameList,
-            clientSeed,
-            serverSeed,
-            level,
-            row,
-            score,
-            color,
-            shadow,
-            seedMateTimes,
-            activeCasinoBets,
-            newClientSeed,
-            hideModal,
-            changeType,
-            changeNonce,
-            copyText,
-            generateScore,
-            changeNewClientSeed
-        };
-    },
-    components: { ResultBlockPlinko }
+      }
+    };
+    const copyText = (req) => {
+      let text = "";
+      switch (req) {
+        case "copy1":
+          text = copy1.value;
+          copied1.value = true;
+          setTimeout(() => {
+            copied1.value = false;
+          }, 1000);
+          break;
+        case "copy2":
+          text = copy2.value;
+          copied2.value = true;
+          setTimeout(() => {
+            copied2.value = false;
+          }, 1000);
+          break;
+        case "copy3":
+          text = copy3.value;
+          copied3.value = true;
+          setTimeout(() => {
+            copied3.value = false;
+          }, 1000);
+          break;
+      }
+      navigator.clipboard.writeText(text);
+    };
+    const generateScore = () => {
+      if (game.value === "Plinko" && serverSeed.value !== "") {
+        stateChange.value = false;
+        let info = GlobalFunc().generateRandomNumber(
+          row.value,
+          level.value.toLowerCase()
+        );
+
+        const redc = (info.color >> 16) & 255;
+        const greenc = (info.color >> 8) & 255;
+        const bluec = info.color & 255;
+
+        const reds = (info.shadow >> 16) & 255;
+        const greens = (info.shadow >> 8) & 255;
+        const blues = info.shadow & 255;
+
+        color.value = `rgb(${redc}, ${greenc}, ${bluec})`;
+        shadow.value = `rgb(${reds}, ${greens}, ${blues})`;
+        score.value = info.value;
+
+        setTimeout(() => {
+          stateChange.value = true;
+        }, 300);
+      }
+    };
+
+    function changeNewClientSeed(){
+      newClientSeed.value = nanoid().slice(0,10)
+    }
+
+    return {
+      buttonType,
+      nonce,
+      copy1,
+      copy2,
+      copy3,
+      copied1,
+      copied2,
+      copied3,
+      stateChange,
+      game,
+      gameList,
+      clientSeed,
+      serverSeed,
+      level,
+      row,
+      score,
+      color,
+      shadow,
+      seedMateTimes,
+      activeCasinoBets,
+      newClientSeed,
+      hideModal,
+      changeType,
+      changeNonce,
+      copyText,
+      generateScore,
+      changeNewClientSeed
+    };
+  },
 };
 </script>
 <style scoped>
