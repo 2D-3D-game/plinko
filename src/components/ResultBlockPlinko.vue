@@ -7,8 +7,6 @@ interface Props {
   index: number;
   // result '1.5'
   result: string;
-  // risk
-  risk: "low" | "middle" | "high";
   // row
   row: "8" | "9" | "10" | "11" | "12" | "13" | "14" | "15" | "16";
 }
@@ -23,7 +21,10 @@ const color: Ref<string> = ref("");
 const shadow: Ref<string> = ref("");
 
 const generateScore = () => {
-  const info: ColorInfo = GlobalFunc().getColorFromIndexAndRow(props.index, props.row);
+  const info: ColorInfo = GlobalFunc().getColorFromIndexAndRow(
+    props.index,
+    props.row
+  );
   const redc = (info.color >> 16) & 255;
   const greenc = (info.color >> 8) & 255;
   const bluec = info.color & 255;
@@ -43,7 +44,6 @@ onBeforeUnmount(() => {
   color.value = "";
   shadow.value = "";
 });
-
 </script>
 
 <template>
@@ -60,21 +60,23 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .score-container {
-  border-radius: 4px;
   width: 48px;
   height: 40px;
-  background: #fa223e;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #fa6020;
+  box-shadow: 0px 3px 0px 0px #a80000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .score-span {
-  color: #000;
-  font-family: Inter;
-  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  font-family: "Proxima Nova";
+  font-size: 10px;
   font-style: normal;
-  font-weight: 600;
-  line-height: 1;
-  padding-bottom: 4px;
+  font-weight: 700;
+  line-height: normal;
 }
 </style>
