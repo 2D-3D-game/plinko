@@ -20,6 +20,7 @@
     "pixi.js": "^7.3.2",
     "vue": "^3.3.4",
     "vue-i18n": "^9.2.2",
+    "feie-ui": "^0.0.9",
     "vue-request": "^2.0.3"
   },
   "devDependencies": {

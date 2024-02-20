@@ -771,13 +771,13 @@ select {
   }
 }
 
-.stooltip {
-  /* position: relative;
-  overflow: auto; */
+/* .stooltip {
+  position: relative;
+  overflow: auto;
 }
 
 .tooltiptext1 {
-  /* display: block !important;
+  display: block !important;
   min-width: 200px !important;
   position: absolute !important;
   right: 20% !important;
@@ -785,9 +785,9 @@ select {
   bottom: 120%;
   white-space: nowrap;
   text-align: center;
-  background: red !important; */
+  background: red !important;
 
-}
+} */
 </style>
 
 

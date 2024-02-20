@@ -1,104 +1,108 @@
-plinko_manual: "Đặt cược thủ công"
-plinko_auto: "Đặt cược tự động"
-plinko_amount: "Số tiền đặt cược"
-plinko_risk: "Rủi ro"
-plinko_rows: "Số hàng"
-plinko_bet: "Đặt cược"
-plinko_betNumbers: "Số lần đặt cược"
-plinko_autobetstart: "Bắt đầu đặt cược tự động"
-plinko_autobetstop: "Dừng đặt cược tự động"
-plinko_fairness: "Công bằng"
-plinko_original: "Meibo trò chơi nguyên bản"
-plinko_bigwins: "Người chơi lớn"
-plinko_luckwins: "Người chơi may mắn"
-plinko_challenges: "Thách đấu"
-plinko_description: "Mô tả"
-plinko_rank: "Xếp hạng"
-plinko_user: "Người chơi"
-plinko_date: "Ngày"
-plinko_multiplier: "Hệ số"
-plinko_payout: "Số tiền thanh toán"
-plinko_level1: "Cấp dưới"
-plinko_level2: "Cấp trung"
-plinko_level3: "Cấp cao"
-plinko_stealth: "Ẩn danh"
-plinko_live: "Cược tức thì"
-plinko_animation: "Hoạt hình"
-plinko_maxvalue: "Số tiền đặt cược tối đa"
-plinko_info: "Thông tin trò chơi"
-plinko_keyboard: "Phím tắt"
-plinko_maxquestion1: "Bạn có chắc chắn muốn bật nút đặt cược tối đa không?"
-plinko_maxquestion2: "Bạn có chắc chắn muốn bật nút đặt cược tối đa không?"
-plinko_turnOn: "Bật"
-plinko_turnOff: "Bật"
-plinko_info1: "1. Mô hình phân bổ sẽ xác định các khoản thanh toán tiềm năng khác nhau
-  thông qua rủi ro và hệ số."
-plinko_info2: "2. Không xoay thiết bị hoặc màn hình của bạn để chống lại trọng lực
-  trong khi trò chơi đang diễn ra."
-plinko_rules: "Quy tắc trò chơi"
-plinko_hotkey1: "Đặt cược"
-plinko_hotkey2: "Nhân đôi số tiền đặt cược"
-plinko_hotkey3: "Giảm một nửa số tiền đặt cược"
-plinko_hotkey4: "Số tiền đặt cược lẻ"
-plinko_hotkeyInfo: "Khi phím tắt được bật, nó sẽ ảnh hưởng đến tất cả các trò chơi
-  cho đến khi bị tắt. Mặc dù một số trò chơi có cùng tổ hợp phím nhưng bạn nên xác
-  nhận tương tác phím bị khóa của các trò chơi khác nhau trước khi sử dụng."
-plinko_hotkeyUse: "Bật phím tắt"
-plinko_statistics: "Thống kê thời gian thực tế"
-plinko_type1: "Tất cả"
-plinko_type2: "Đặt cược"
-plinko_type3: "Cuộc đua"
-plinko_type4: "Ẩn"
-plinko_left1: "Lợi nhuận"
-plinko_left2: "Tổng số tiền cược"
-plinko_right1: "Thắng"
-plinko_right2: "Thua"
-plinko_max: "Giá trị lớn nhất"
-plinko_autobetalert1: "Thành công"
-plinko_autobetalert2: "Đặt cược tự động hoàn tất"
-plinko_betamountalert: "Đặt cược của bạn không thể lớn hơn số dư của bạn!"
-plinko_tooltip1: "Cài đặt trò chơi"
-plinko_tooltip2: "Bật chế độ rạp hát"
-plinko_tooltip3: "Bật thống kê thời gian thực tế"
-plinko_tooltip4: "Trò chơi yêu thích"
-plinko_racespan: "Đặt cược và cạnh tranh ngay bây giờ!"
-plinko_scoreboard_time: 'Người đặt cược:'
-plinko_scoreboard_on: "Tại"
-plinko_scoreboard_at: "Của"
-plinko_scoreboard_multi: "Hệ số"
-plinko_scoreboard_payout: "Số tiền thanh toán"
-plinko_scoreboard_play: "Đi đến"
-plinko_scoreboard_provable: "Sự công bằng có thể chứng minh được"
-plinko_prove_text1: "Hạt giống máy chủ"
-plinko_prove_value1: "Hạt giống không có hiển thị"
-plinko_prove_text2: "Hạt giống máy chủ (Băm)"
-plinko_prove_text3: "Hạt giống khách hàng"
-plinko_prove_text4: "Dấu hiệu thực tế"
-plinko_prove_button1: "Chuyển động máy chủ của bạn để xác minh đặt cược này"
-plinko_prove_button2: "Sự công bằng có thể chứng minh được là gì?"
-plinko_fairnesses_seed: "Hạt giống"
-plinko_fairnesses_verify: "Xác minh"
-plinko_fairnesses_text1: "Hạt giống khách hàng đang hoạt động"
-plinko_fairnesses_text2: "Hạt giống máy chủ đang hoạt động (Băm)"
-plinko_fairnesses_text3: "Số cược đặt vào cặp hạt giống"
-plinko_fairnesses_text4: "Xoay cặp hạt giống"
-plinko_fairnesses_text5: "Hạt giống khách hàng mới"
-plinko_fairnesses_text6: "Hạt giống máy chủ tiếp theo (Băm)"
-plinko_fairnesses_text7: 'Bạn phải hoàn thành các trò chơi sau để luân chuyển các cặp hạt giống:'
-plinko_fairnesses_button: "Thay thế"
-plinko_fairnesses_verifyText1: "Cần nhập nhiều hơn để xác minh kết quả"
-plinko_fairnesses_calcButton: "Xem phân tích tính toán"
-plinko_verifyTexts_game: "Trò chơi"
-plinko_verifyTexts_clientSeed: "Hạt giống khách hàng"
-plinko_verifyTexts_serverSeed: "Hạt giống máy chủ"
-plinko_verifyTexts_nonce: "Dấu hiệu thực tế"
-plinko_copyText: "Sao chép thành công!"
-plinko_copyId: "Sao chép thành công!"
-plinko_showPro_profit: "获胜利润"
-plinko_showPro_chance: "胜算"
-plinko_fairness_pop_up_risk_level_1: 等级1
-plinko_fairness_pop_up_risk_level_2: 等级2
-plinko_fairness_pop_up_risk_level_3: 等级3
-aaa: 你好
+
+dice_auto_bet_auto_bet_end: Tự động cược kết thúc
 dice_auto_bet_auto_bet_start: Thành công
-dice_auto_bet_auto_bet_end: 自动投注结束
+plinko_after_bet_pop_up_risk_level_1: level1
+plinko_after_bet_pop_up_risk_level_2: Trung bình
+plinko_after_bet_pop_up_risk_level_3: level3
+plinko_amount: Số Tiền Cược
+plinko_animation: Hoạt hình
+plinko_auto: Tự độn
+plinko_autobetalert1: Thành công
+plinko_autobetalert2: Đặt cược tự động hoàn tất
+plinko_autobetstart: Bắt đầu đặt cược tự động
+plinko_autobetstop: Dừng đặt cược tự động
+plinko_bet: Cược
+plinko_betNumbers: Số Cược
+plinko_betamountalert: Đặt cược của bạn không thể lớn hơn số dư của bạn!
+plinko_bigwins: Người chơi lớn
+plinko_challenges: Thách đấu
+plinko_copyId: Đã sao chép, chia sẻ!
+plinko_copyText: Sao chép thành công!
+plinko_date: Ngày
+plinko_description: Mô tả
+plinko_fairness: Công bằng
+plinko_fairness_pop_up_risk_level_1: Thấp
+plinko_fairness_pop_up_risk_level_2: Trung bình
+plinko_fairness_pop_up_risk_level_3: Cao
+plinko_fairnesses_button: Thay đổi
+plinko_fairnesses_calcButton: Xem phân tích tính toán
+plinko_fairnesses_seed: Hạt giống
+plinko_fairnesses_text1: Hạt giống khách hàng đang hoạt động
+plinko_fairnesses_text2: Hạt giống máy chủ đang hoạt động (Băm)
+plinko_fairnesses_text3: Số cược đặt vào cặp hạt giống
+plinko_fairnesses_text4: Xoay Cặp Hạt Giống
+plinko_fairnesses_text5: Hạt giống khách hàng mới
+plinko_fairnesses_text6: Hạt giống máy chủ tiếp theo (Băm)
+plinko_fairnesses_text7: 'Bạn phải hoàn thành các trò chơi sau để luân chuyển các
+  cặp hạt giống:'
+plinko_fairnesses_verify: Xác minh
+plinko_fairnesses_verifyText1: Cần nhập nhiều hơn để xác minh kết quả
+plinko_hotkey1: Đặt cược
+plinko_hotkey2: Nhân đôi số tiền đặt cược
+plinko_hotkey3: Giảm một nửa số tiền đặt cược
+plinko_hotkey4: Số tiền đặt cược lẻ
+plinko_hotkeyInfo: Khi phím tắt được bật, nó sẽ ảnh hưởng đến tất cả các trò chơi
+  cho đến khi bị tắt. Mặc dù một số trò chơi có cùng tổ hợp phím nhưng bạn nên xác
+  nhận tương tác phím bị khóa của các trò chơi khác nhau trước khi sử dụng.
+plinko_hotkeyUse: Bật phím tắt
+plinko_info: Thông tin Trò chơi
+plinko_info1: 1. Mô hình phân bổ sẽ xác định các khoản thanh toán tiềm năng khác nhau
+  thông qua rủi ro và hệ số.
+plinko_info2: 2. Không xoay thiết bị hoặc màn hình của bạn để chống lại trọng lực
+  trong khi trò chơi đang diễn ra.
+plinko_keyboard: Phím tắt
+plinko_left1: Lợi nhuận
+plinko_left2: Tổng cược
+plinko_level1: Thấp
+plinko_level2: Trung bình
+plinko_level3: Cao
+plinko_live: Cược tức thì
+plinko_luckwins: Người chơi may mắn
+plinko_manual: Thủ công
+plinko_max: Giá trị lớn nhất
+plinko_maxquestion1: Bạn có chắc chắn muốn bật nút đặt cược tối đa không?
+plinko_maxquestion2: Bạn có chắc chắn muốn bật nút đặt cược tối đa không?
+plinko_maxvalue: Số tiền đặt cược tối đa
+plinko_multiplier: Hệ số
+plinko_original: Meibo trò chơi nguyên bản
+plinko_payout: Số tiền thanh toán
+plinko_prove_button1: Chuyển động máy chủ của bạn để xác minh đặt cược này
+plinko_prove_button2: Sự công bằng có thể chứng minh được là gì?
+plinko_prove_text1: Hạt giống máy chủ
+plinko_prove_text2: Hạt giống máy chủ (Băm)
+plinko_prove_text3: Hạt giống khách hàng
+plinko_prove_text4: Dấu hiệu thực tế
+plinko_prove_value1: Hạt giống không có hiển thị
+plinko_racespan: Đặt cược và cạnh tranh ngay bây giờ!
+plinko_rank: Xếp hạng
+plinko_right1: Thắng
+plinko_right2: Thua
+plinko_risk: Rủi ro
+plinko_rows: Hàng
+plinko_rules: Cách chơi
+plinko_scoreboard_at: tại
+plinko_scoreboard_multi: Hệ số
+plinko_scoreboard_on: bật
+plinko_scoreboard_payout: Thanh toán
+plinko_scoreboard_play: Chơi Plinko
+plinko_scoreboard_provable: Sự công bằng có thể chứng minh được
+plinko_scoreboard_time: 'Đặt bởi:'
+plinko_showPro_chance: Tỉ Lệ
+plinko_showPro_profit: Lợi Nhuận Khi Thắng
+plinko_statistics: Thống kê thời gian thực tế
+plinko_stealth: Ẩn danh
+plinko_tooltip1: Cài đặt Trò chơi
+plinko_tooltip2: Bật chế độ rạp hát
+plinko_tooltip3: Bật thống kê thời gian thực tế
+plinko_tooltip4: Trò chơi yêu thích
+plinko_turnOff: Bật
+plinko_turnOn: Kích hoạt
+plinko_type1: Tất cả
+plinko_type2: Cược
+plinko_type3: Cuộc đua
+plinko_type4: hide
+plinko_user: Người chơi
+plinko_verifyTexts_clientSeed: Hạt giống khách hàng
+plinko_verifyTexts_game: Trò chơi
+plinko_verifyTexts_nonce: Số Cược
+plinko_verifyTexts_serverSeed: Hạt giống máy chủ

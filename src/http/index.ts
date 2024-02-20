@@ -1,7 +1,8 @@
 import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { storeToRefs } from 'pinia'
-import {useAppStore} from '~/store/app'
+import { useAppStore } from '~/store/app'
+import { handleResponse, setAxiosConfig } from 'feie-ui'
 
 interface IResponse<T> {
   status: boolean
@@ -23,6 +24,7 @@ class HttpClient {
   private instance = axios.create({
     baseURL: import.meta.env.DEV ? "/api" : location.origin,
     timeout: 12000,
+    responseType: 'arraybuffer',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
     },
@@ -36,7 +38,7 @@ class HttpClient {
   #getDevice() {
     const isMobile = window.innerWidth <= 768
     if (isMobile)
-      return 25
+      return 24
 
     else
       return 24
@@ -44,17 +46,20 @@ class HttpClient {
 
 
   private requestInterceptorsList: IRequestInterceptors[] = [
+    (config) => {
+      return setAxiosConfig(config, this.#getDevice())
+    },
     // 设置token和dn
     (config) => {
-        const {token} = storeToRefs( useAppStore())
-        if (token.value)
-          config.headers.t = token.value
+      const { token } = storeToRefs(useAppStore())
+      if (token.value)
+        config.headers.t = token.value
 
       return config
     },
     // 设置全局header
     (config) => {
-      config.headers.d = '25'
+      config.headers.d = this.#getDevice()
       config.headers.lang = window.miniGameWujie.props.backendLang
       return config
     },
@@ -69,6 +74,9 @@ class HttpClient {
 
   private responseInterceptorsList: IResponseInterceptors[] = [
     (response) => {
+      return handleResponse(response)
+    },
+    (response) => {
       const { status, data } = response.data as IResponse<any>
 
       if (!status) {
@@ -77,7 +85,7 @@ class HttpClient {
         }
         else {
           if (!response.config.params?.noNotify) {
-            window.miniGameWujie.props.openNotify({type:'error',message:data});
+            window.miniGameWujie.props.openNotify({ type: 'error', message: data });
           }
         }
 

@@ -1,100 +1,106 @@
-plinko_manual: "เดิมพันด้วยตนเอง"
-plinko_auto: "เดิมพันอัตโนมัติ"
-plinko_amount: "จำนวนเงินเดิมพัน"
-plinko_risk: "ความเสี่ยง"
-plinko_rows: "จำนวนแถว"
-plinko_bet: "เดิมพัน"
-plinko_betNumbers: "จำนวนการเดิมพัน"
-plinko_autobetstart: "เริ่มการเดิมพันอัตโนมัติ"
-plinko_autobetstop: "หยุดการเดิมพันอัตโนมัติ"
-plinko_fairness: "ความเป็นธรรม"
-plinko_original: "เกมดั้งเดิมของ Meibo"
-plinko_bigwins: "ผู้ชนะรางวัลใหญ่"
-plinko_luckwins: "ผู้โชคดีชนะรางวัล"
-plinko_challenges: "ความท้าทาย"
-plinko_description: "คำอธิบาย"
-plinko_rank: "อันดับ"
-plinko_user: "ผู้เล่น"
-plinko_date: "วันที่"
-plinko_multiplier: "ตัวคูณ"
-plinko_payout: "ยอดชำระ"
-plinko_level1: "ระดับล่าง"
-plinko_level2: "ระดับกลาง"
-plinko_level3: "ระดับสูง"
-plinko_stealth: "ซ่อนตัวตน"
-plinko_live: "เดิมพันทันที"
-plinko_animation: "อนิเมชั่น"
-plinko_maxvalue: "เดิมพันสูงสุด"
-plinko_info: "ข้อมูลเกม"
-plinko_keyboard: "ปุ่มลัด"
-plinko_maxquestion1: "คุณแน่ใจหรือไม่ว่าคุณต้องการใช้งานปุ่มยอดเดิมพันสูงสุด?"
-plinko_maxquestion2: "คุณแน่ใจหรือไม่ว่าคุณต้องการใช้งานปุ่มยอดเดิมพันสูงสุด?"
-plinko_turnOn: "เปิดใช้งาน"
-plinko_turnOff: "เปิดใช้งาน"
-plinko_info1: "โหมดการกำหนดค่าจะกำหนดจำนวนเงินที่เป็นไปได้ที่แตกต่างกันผ่านความเสี่ยงและตัวคูณ"
-plinko_info2: "อย่าหมุนอุปกรณ์หรือจอแสดงผลของท่านเพื่อต่อต้านแรงโน้มถ่วงขณะเล่นเกม"
-plinko_rules: "กฎของเกม"
-plinko_hotkey1: "วางเดิมพัน"
-plinko_hotkey2: "เพิ่มเงินเดิมพันเป็นสองเท่า"
-plinko_hotkey3: "ลดเงินเดิมพันครึ่งหนึ่ง"
-plinko_hotkey4: "จำวนการเดิมพันเป็นศูนย์"
-plinko_hotkeyInfo: "เมื่อเปิดใช้งานปุ่มลัดแล้ว จะส่งผลต่อเกมทั้งหมดจนกว่าจะปิดใช้งาน แม้ว่าบางเกมจะมีการเชื่องโยงปุ่มที่เหมือนกัน แต่ขอแนะนำให้คุณยืนยันการโต้ตอบของปุ่มล็อคในเกมต่าง ๆ ก่อนที่จะใช้"
-plinko_hotkeyUse: "เปิดใช้งานปุ่มลัด"
-plinko_statistics: "ระบบเรียลไทม์"
-plinko_type1: "ทั้งหมด"
-plinko_type2: "เดิมพัน"
-plinko_type3: "การแข่งขัน"
-plinko_type4: "ซ่อน"
-plinko_left1: "กำไร"
-plinko_left2: "เดิมพันทั้งหมด"
-plinko_right1: "ชนะ"
-plinko_right2: "แพ้"
-plinko_max: "สูงสุด"
-plinko_autobetalert1: "เริ่มต้นเดิมพันอัตโนมัติ"
-plinko_autobetalert2: "เดิมพันอัตโนมัติสมบูรณ์"
-plinko_betamountalert: "ยอดเดิมพันของท่านต้องไม่เกินยอดคงเหลือ"
-plinko_tooltip1: "ตั้งค่าเกม"
-plinko_tooltip2: "เปิดใช้งานโรงภาพยนต์"
-plinko_tooltip3: "เปิดสถิติแบบเรียลไทม์"
-plinko_tooltip4: "เกมที่ชอบ"
-plinko_racespan: "เดิมพันเพื่อเข้าร่วมตอนนี้"
-plinko_scoreboard_time: "นักพนัน:"
-plinko_scoreboard_on: "ใน"
-plinko_scoreboard_at: "ของ"
-plinko_scoreboard_multi: "เลขคูณ"
-plinko_scoreboard_payout: "จำนวนเงินที่ชำระ"
-plinko_scoreboard_play: "ก่อนหน้านี้"
-plinko_scoreboard_provable: "ความเป็นธรรมที่พิสูจน์ได้"
-plinko_prove_text1: "เซิร์ฟเวอร์ Seeds"
-plinko_prove_value1: "Seeds ที่ยังไม่ถูกเปิดเผย"
-plinko_prove_text2: "เซิร์ฟเวอร์ Seeds (Hash)"
-plinko_prove_text3: "ลูกค้า Seeds"
-plinko_prove_text4: "สัญญาณที่เกิดขึ้นจริง"
-plinko_prove_button1: "หมุนการจับคู่ Seeds ของคุณเพื่อตรวจสอบการเดิมพันนี้"
-plinko_prove_button2: "ความยุติธรรมที่พิสูจน์ได้คืออะไร!"
-plinko_fairnesses_seed: "Seeds"
-plinko_fairnesses_verify: "ยืนยัน"
-plinko_fairnesses_text1: "ลูกค้า Seeds ที่ใช้งานอยู่"
-plinko_fairnesses_text2: "เซิร์ฟเวอร์ที่ใช้งานอยู่ Seeds (Hash)"
-plinko_fairnesses_text3: "จำนวนการเดิมพันในการจับคู่ Seeds"
-plinko_fairnesses_text4: "การหมุนจับคู่ Seeds"
-plinko_fairnesses_text5: "ลูกค้าใหม่ Seeds"
-plinko_fairnesses_text6: "เซิร์ฟเวอร์ถัดไป Seeds (Hash)"
-plinko_fairnesses_text7: "ท่านต้องเล่นเกมต่อไปนี้ให้เสร็จสิ้นเพื่อหมุนเวียนการจับคู่ Seeds: "
-plinko_fairnesses_button: "แทนที่"
-plinko_fairnesses_verifyText1: "จำเป็นต้องป้อนข้อมูลเพิ่มเติมเพื่อตรวจสอบผลลัพธ์"
-plinko_fairnesses_calcButton: "ดูรายละเอียดการคำนวณ"
-plinko_verifyTexts_game: "เกม"
-plinko_verifyTexts_clientSeed: "ลูกค้า Seeds"
-plinko_verifyTexts_serverSeed: "บริการ Seeds"
-plinko_verifyTexts_nonce: "สัญญาณที่เกิดขึ้นจริง"
-plinko_copyText: "คัดลอกสำเร็จ"
-plinko_copyId: "คัดลอกสำเร็จ"
-plinko_showPro_profit: "กำไรจากการชนะ"
-plinko_showPro_chance: "โอกาสชนะ"
-plinko_fairness_pop_up_risk_level_1: 等级1
-plinko_fairness_pop_up_risk_level_2: 等级2
-plinko_fairness_pop_up_risk_level_3: 等级3
-aaa: 你好
-dice_auto_bet_auto_bet_start: 自动投注开始
-dice_auto_bet_auto_bet_end: 自动投注结束
+
+dice_auto_bet_auto_bet_end: สิ้นสุดการเดิมพันอัตโนมัติ
+dice_auto_bet_auto_bet_start: เริ่มต้นการเดิมพันอัตโนมัติ
+plinko_after_bet_pop_up_risk_level_1: level1
+plinko_after_bet_pop_up_risk_level_2: level2
+plinko_after_bet_pop_up_risk_level_3: level3
+plinko_amount: จำนวนเงินเดิมพัน
+plinko_animation: อนิเมชั่น
+plinko_auto: เดิมพันอัตโนมัติ
+plinko_autobetalert1: เริ่มต้นเดิมพันอัตโนมัติ
+plinko_autobetalert2: เดิมพันอัตโนมัติสมบูรณ์
+plinko_autobetstart: เริ่มการเดิมพันอัตโนมัติ
+plinko_autobetstop: หยุดการเดิมพันอัตโนมัติ
+plinko_bet: เดิมพัน
+plinko_betNumbers: จำนวนการเดิมพัน
+plinko_betamountalert: ยอดเดิมพันของท่านต้องไม่เกินยอดคงเหลือ
+plinko_bigwins: ผู้ชนะรางวัลใหญ่
+plinko_challenges: ความท้าทาย
+plinko_copyId: คัดลอกสำเร็จ
+plinko_copyText: คัดลอกสำเร็จ
+plinko_date: วันที่
+plinko_description: คำอธิบาย
+plinko_fairness: ความเป็นธรรม
+plinko_fairness_pop_up_risk_level_1: ระดับที่1
+plinko_fairness_pop_up_risk_level_2: ระดับที่2
+plinko_fairness_pop_up_risk_level_3: ระดับที่3
+plinko_fairnesses_button: แทนที่
+plinko_fairnesses_calcButton: ดูรายละเอียดการคำนวณ
+plinko_fairnesses_seed: Seeds
+plinko_fairnesses_text1: ลูกค้า Seeds ที่ใช้งานอยู่
+plinko_fairnesses_text2: เซิร์ฟเวอร์ที่ใช้งานอยู่ Seeds (Hash)
+plinko_fairnesses_text3: จำนวนการเดิมพันในการจับคู่ Seeds
+plinko_fairnesses_text4: การหมุนจับคู่ Seeds
+plinko_fairnesses_text5: ลูกค้าใหม่ Seeds
+plinko_fairnesses_text6: เซิร์ฟเวอร์ถัดไป Seeds (Hash)
+plinko_fairnesses_text7: 'ท่านต้องเล่นเกมต่อไปนี้ให้เสร็จสิ้นเพื่อหมุนเวียนการจับคู่
+  Seeds: '
+plinko_fairnesses_verify: ยืนยัน
+plinko_fairnesses_verifyText1: จำเป็นต้องป้อนข้อมูลเพิ่มเติมเพื่อตรวจสอบผลลัพธ์
+plinko_hotkey1: วางเดิมพัน
+plinko_hotkey2: เพิ่มเงินเดิมพันเป็นสองเท่า
+plinko_hotkey3: ลดเงินเดิมพันครึ่งหนึ่ง
+plinko_hotkey4: จำวนการเดิมพันเป็นศูนย์
+plinko_hotkeyInfo: เมื่อเปิดใช้งานปุ่มลัดแล้ว จะส่งผลต่อเกมทั้งหมดจนกว่าจะปิดใช้งาน
+  แม้ว่าบางเกมจะมีการเชื่องโยงปุ่มที่เหมือนกัน แต่ขอแนะนำให้คุณยืนยันการโต้ตอบของปุ่มล็อคในเกมต่าง
+  ๆ ก่อนที่จะใช้
+plinko_hotkeyUse: เปิดใช้งานปุ่มลัด
+plinko_info: ข้อมูลเกม
+plinko_info1: โหมดการกำหนดค่าจะกำหนดจำนวนเงินที่เป็นไปได้ที่แตกต่างกันผ่านความเสี่ยงและตัวคูณ
+plinko_info2: อย่าหมุนอุปกรณ์หรือจอแสดงผลของท่านเพื่อต่อต้านแรงโน้มถ่วงขณะเล่นเกม
+plinko_keyboard: ปุ่มลัด
+plinko_left1: กำไร
+plinko_left2: เดิมพันทั้งหมด
+plinko_level1: ระดับล่าง
+plinko_level2: ระดับกลาง
+plinko_level3: ระดับสูง
+plinko_live: เดิมพันทันที
+plinko_luckwins: ผู้โชคดีชนะรางวัล
+plinko_manual: เดิมพันด้วยตนเอง
+plinko_max: สูงสุด
+plinko_maxquestion1: คุณแน่ใจหรือไม่ว่าคุณต้องการใช้งานปุ่มยอดเดิมพันสูงสุด?
+plinko_maxquestion2: คุณแน่ใจหรือไม่ว่าคุณต้องการใช้งานปุ่มยอดเดิมพันสูงสุด?
+plinko_maxvalue: เดิมพันสูงสุด
+plinko_multiplier: ตัวคูณ
+plinko_original: เกมดั้งเดิมของ Meibo
+plinko_payout: ยอดชำระ
+plinko_prove_button1: หมุนการจับคู่ Seeds ของคุณเพื่อตรวจสอบการเดิมพันนี้
+plinko_prove_button2: ความยุติธรรมที่พิสูจน์ได้คืออะไร!
+plinko_prove_text1: เซิร์ฟเวอร์ Seeds
+plinko_prove_text2: เซิร์ฟเวอร์ Seeds (Hash)
+plinko_prove_text3: ลูกค้า Seeds
+plinko_prove_text4: สัญญาณที่เกิดขึ้นจริง
+plinko_prove_value1: Seeds ที่ยังไม่ถูกเปิดเผย
+plinko_racespan: เดิมพันเพื่อเข้าร่วมตอนนี้
+plinko_rank: อันดับ
+plinko_right1: ชนะ
+plinko_right2: แพ้
+plinko_risk: ความเสี่ยง
+plinko_rows: จำนวนแถว
+plinko_rules: กฎของเกม
+plinko_scoreboard_at: ของ
+plinko_scoreboard_multi: เลขคูณ
+plinko_scoreboard_on: ใน
+plinko_scoreboard_payout: จำนวนเงินที่ชำระ
+plinko_scoreboard_play: ก่อนหน้านี้ Plinko
+plinko_scoreboard_provable: ความเป็นธรรมที่พิสูจน์ได้
+plinko_scoreboard_time: 'นักพนัน:'
+plinko_showPro_chance: โอกาสชนะ
+plinko_showPro_profit: กำไรจากการชนะ
+plinko_statistics: ระบบเรียลไทม์
+plinko_stealth: ซ่อนตัวตน
+plinko_tooltip1: ตั้งค่าเกม
+plinko_tooltip2: เปิดใช้งานโรงภาพยนต์
+plinko_tooltip3: เปิดสถิติแบบเรียลไทม์
+plinko_tooltip4: เกมที่ชอบ
+plinko_turnOff: เปิดใช้งาน
+plinko_turnOn: เปิดใช้งาน
+plinko_type1: ทั้งหมด
+plinko_type2: เดิมพัน
+plinko_type3: การแข่งขัน
+plinko_type4: ซ่อน
+plinko_user: ผู้เล่น
+plinko_verifyTexts_clientSeed: ลูกค้า Seeds
+plinko_verifyTexts_game: เกม
+plinko_verifyTexts_nonce: สัญญาณที่เกิดขึ้นจริง
+plinko_verifyTexts_serverSeed: บริการ Seeds

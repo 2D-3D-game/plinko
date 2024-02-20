@@ -213,7 +213,7 @@ export default {
     const isAnimation = ref(false);
     const volumn = ref(50);
     const rectComponent = ref(null);
-    const { logoSrc } = storeToRefs(useAppStore())
+    const { logoSrc ,isLogin} = storeToRefs(useAppStore())
 
     const changeImage = () => {
       isFavorite.value = !isFavorite.value;
@@ -260,8 +260,12 @@ export default {
     };
 
     const showFairness = () => {
-      mutations.seedDetail();
-      mutations.showFairness();
+      // mutations.seedDetail();
+      // mutations.showFairness();
+      if(!isLogin.value){
+        return window.miniGameWujie.bus.$emit('openRegister')
+      }
+      window.miniGameWujie.bus.$emit('openProvablyFair','Plinko')
       scrollUp();
     };
 

@@ -176,7 +176,7 @@
         </div>
         <button :class="'playbutton'" @click="hideModal">
           <span :class="'gray-span'"
-            >{{ $t("plinko_scoreboard_play") }} Plinko</span
+            >{{ $t("plinko_scoreboard_play") }}</span
           >
         </button>
         <div :class="'fairness'">
@@ -709,6 +709,8 @@ select {
 <script>
 import { ref, computed } from "vue";
 import { store, mutations } from "../core/Store";
+import { useI18n } from "vue-i18n";
+
 
 export default {
   computed: {
@@ -725,12 +727,13 @@ export default {
       return store.plinkoAmount;
     },
     plinkoLevel() {
+      const { t } = useI18n();
       if (store.plinkoLevel === "low") {
-        return "level1";
+        return t('plinko_after_bet_pop_up_risk_level_1');
       } else if (store.plinkoLevel === "middle") {
-        return "level2";
+        return t('plinko_after_bet_pop_up_risk_level_2');
       } else if (store.plinkoLevel === "high") {
-        return "level3";
+        return t('plinko_after_bet_pop_up_risk_level_3');
       }
     },
     plinkoRow() {
@@ -749,7 +752,7 @@ export default {
     const isHover1 = ref(false);
     const isHover2 = ref(false);
     const isHover3 = ref(false);
-    const copy1 = ref("201,213,564,969");
+    const copy1 = ref("201.213.564.969");
     const copy2 = ref(
       computed(() => {
         return store.active_server_seed_hash;

@@ -20,7 +20,7 @@ export function Plinko(element) {
 
   const initialWidth = 1200;
   const secondWidth = 1100;
-  engine.timing.timeScale = 1.4;
+  engine.timing.timeScale = 1.6;
 
   const sceneObjects = [];
 

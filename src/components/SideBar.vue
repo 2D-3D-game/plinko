@@ -45,7 +45,6 @@
             ]"
             :ref="'betAmountInput'"
             v-model="amount"
-            placeholder="0.00000000"
             type="number"
             min="0"
             step="0.00000001"
@@ -380,7 +379,7 @@ export default {
       }
     );
     const betBtnDisabled = computed(() => {
-      if (isLogin.value) {
+      if (isLogin.value && !isAutoBetting.value) {
         return betLoading.value || isAmountOverBalance.value;
       }
       return false;

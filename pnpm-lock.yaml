@@ -17,6 +17,9 @@ dependencies:
   big.js:
     specifier: ^6.2.1
     version: 6.2.1
+  feie-ui:
+    specifier: ^0.0.9
+    version: 0.0.9
   matter-js:
     specifier: ^0.19.0
     version: 0.19.0
@@ -946,6 +949,10 @@ packages:
       set-function-length: 1.1.1
     dev: false
 
+  /cbor-js@0.1.0:
+    resolution: {integrity: sha512-7sQ/TvDZPl7csT1Sif9G0+MA0I0JOVah8+wWlJVQdVEgIbCzlN/ab3x+uvMNsc34TUvO6osQTAmB2ls80JX6tw==}
+    dev: false
+
   /chokidar@3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
     engines: {node: '>= 8.10.0'}
@@ -1104,6 +1111,12 @@ packages:
     dependencies:
       reusify: 1.0.4
     dev: true
+
+  /feie-ui@0.0.9:
+    resolution: {integrity: sha512-MH/Lv1+dsQLbPuSTLHIhEkEKcrXcwEmpprnn7zYbVMOOXEYlRRyCpGX6szWNMOrb4ADrrCQjjFuNnG8dGNAaTg==}
+    dependencies:
+      cbor-js: 0.1.0
+    dev: false
 
   /fill-range@7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
