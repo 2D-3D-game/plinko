@@ -140,7 +140,7 @@
       </div> -->
       <!-- <div :class="'divider'"></div> -->
     </div>
-    <div :class="'footer-image'">
+    <div v-if="logoUrl != ''" :class="'footer-image'">
       <img :src="logoSrc" alt="Image" width="68" height="25" />
     </div>
     <button :style="{ background: 'transparent', border: 'none' }" @click="showFairness">
@@ -171,7 +171,11 @@ export default {
       rectSrc: "./image/rect.svg",
       totalSrc: "./image/total.svg",
       unSrc: "./image/unfavorite.svg",
+      logoUrl: '',
     };
+  },
+  created(){
+    this.picture_optimize()
   },
   methods: {
     handleMouseOut(button) {
@@ -196,6 +200,11 @@ export default {
           break;
       }
     },
+    picture_optimize(){
+      if ( window.miniGameWujie.props.staticDomain !='' && window.miniGameWujie.props.logoUrl !='' ) {
+        this.logoUrl = (window.miniGameWujie.props.staticDomain +'/'+ window.miniGameWujie.props.logoUrl) || './icons/meibo.svg';
+      }
+    }
   },
 
   computed: {

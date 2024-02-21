@@ -377,7 +377,7 @@ export default {
         manual: true,
         onSuccess(res) {
           playMp3("betStart");
-          plinko.add(res.state.index + 1);
+          plinko.add(res.state.index + 1, res.id);
           bettingCount.value = bettingCount.value + 1;
 
           if (isAutoBetting.value && numberofbet.value > 0) {
@@ -497,6 +497,9 @@ export default {
     };
 
     const changeAmount = () => {
+      if(amount.value > currentBalance.value) {
+        amount.value = currentBalance.value
+      }
       amount.value = toFixed(+amount.value, decimalNum.value);
       mutations.updatePlinko(amount.value, rows.value, level.value);
     };
@@ -519,6 +522,7 @@ export default {
       bettingBus.on(handleDataUpdate);
       window.addEventListener("resize", handleResize);
       plinko.GetSettings(level.value, rows.value);
+      plinko.map();
 
       const a = document.getElementsByTagName("canvas");
       const canvasArr = Array.from(a);

@@ -1,81 +1,26 @@
-import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import axios from 'axios'
-import { storeToRefs } from 'pinia'
-import { useAppStore } from '~/store/app'
-import { handleResponse, setAxiosConfig } from 'feie-ui'
+import { HttpClient } from 'feie-ui'
 
 interface IResponse<T> {
   status: boolean
   data: T
 }
-type IRequestInterceptors = (
-  value: InternalAxiosRequestConfig<any>
-) => InternalAxiosRequestConfig<any>
-
-type IResponseInterceptors = (
-  value: AxiosResponse<any>
-) => AxiosResponse<any> | Promise<Error>
 
 
-
-class HttpClient {
-  cancelTokenList: AbortController[] = []
-
-  private instance = axios.create({
-    baseURL: import.meta.env.DEV ? "/api" : location.origin,
-    timeout: 12000,
-    responseType: 'arraybuffer',
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-    },
-  })
-
-  constructor() {
-    this.setInterceptors()
-  }
-
-  /** 获取当前设备信息 */
-  #getDevice() {
-    const isMobile = window.innerWidth <= 768
-    if (isMobile)
-      return 24
-
-    else
-      return 24
-  }
-
-
-  private requestInterceptorsList: IRequestInterceptors[] = [
-    (config) => {
-      return setAxiosConfig(config, this.#getDevice())
-    },
-    // 设置token和dn
-    (config) => {
-      const { token } = storeToRefs(useAppStore())
-      if (token.value)
-        config.headers.t = token.value
+export const httpClient =  new HttpClient({
+  baseURL: import.meta.env.DEV ? "/api" : location.origin,
+  timeout: 10000,
+  isEncryption: true,
+  showConsole:true,
+  requestInterceptors: [
+    (config: any) => {
+      config.headers.d = 24
+      config.headers.t = window.miniGameWujie.props.token || ""
+      config.headers.lang = window.miniGameWujie.props.backendLang || "zh_CN"
 
       return config
     },
-    // 设置全局header
-    (config) => {
-      config.headers.d = this.#getDevice()
-      config.headers.lang = window.miniGameWujie.props.backendLang
-      return config
-    },
-    // 设置AbortController
-    (config) => {
-      const controller = new AbortController()
-      config.signal = controller.signal
-      this.cancelTokenList.push(controller)
-      return config
-    },
-  ]
-
-  private responseInterceptorsList: IResponseInterceptors[] = [
-    (response) => {
-      return handleResponse(response)
-    },
+  ],
+  responseInterceptors:[
     (response) => {
       const { status, data } = response.data as IResponse<any>
 
@@ -93,68 +38,7 @@ class HttpClient {
       }
       return response
     },
-    // 请求完成后，移除AbortController
-    (response) => {
-      this.cancelTokenList = this.cancelTokenList.filter(item => item !== response.config.signal as any)
-      return response
-    },
-    // 处理后端status为true的情况，只将data返回
-    (response) => {
-      const { status, data } = response.data as IResponse<any>
-      if (status)
-        response.data = data
-
-      return response
-    },
   ]
+})
 
-  private setInterceptors() {
-    this.instance.interceptors.request.use(
-      (config) => {
-        for (const interceptor of this.requestInterceptorsList)
-          interceptor(config)
 
-        return config
-      },
-      (error) => {
-        // 判断请求超时
-        if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
-          console.error('请求超时')
-          return
-        }
-
-        return Promise.reject(error)
-      },
-    )
-
-    this.instance.interceptors.response.use(
-      async (response) => {
-        for (const interceptor of this.responseInterceptorsList) {
-          const interceptorResult = await interceptor(response)
-          if (interceptorResult instanceof Error)
-            return Promise.reject(interceptorResult)
-        }
-        return response.data
-      }, (error) => {
-
-        return Promise.reject(error)
-      },
-    )
-  }
-
-  /** 关闭所有请求 */
-  cancelAllRequest() {
-    this.cancelTokenList.forEach(item => item.abort())
-    this.cancelTokenList = []
-  }
-
-  get<T>(url: string, config?: AxiosRequestConfig<any>): Promise<T> {
-    return this.instance.get(url, config)
-  }
-
-  post<T>(url: string, data?: any, config?: AxiosRequestConfig<any>): Promise<T> {
-    return this.instance.post(url, data, config)
-  }
-}
-
-export const httpClient = new HttpClient()

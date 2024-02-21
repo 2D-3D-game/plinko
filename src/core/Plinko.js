@@ -3,7 +3,7 @@ import * as PIXI from "pixi.js";
 import * as TWEEN from "@tweenjs/tween.js";
 import { GlobalFunc } from "./GlobalFunc";
 import { store, mutations } from "./Store";
-import {bettingBus} from '~/core/bus'
+import { bettingBus } from "~/core/bus";
 
 export function Plinko(element) {
   /********** Begin Settings For Engine, PIXI  **********/
@@ -60,7 +60,7 @@ export function Plinko(element) {
   /********** End Global Variables  **********/
 
   /********** Begin Local Variables  **********/
-  let levelState = "middle";
+  let levelState = localStorage.getItem("PLINKO_DEFAULT_LEVEL") ?? "middle";
   let rowNumState = 16;
   let last = 0;
   let originalY = 0;
@@ -97,7 +97,7 @@ export function Plinko(element) {
     app.stage.addChild(graphics);
   }
 
-  function Particle(x, y, r, road) {
+  function Particle(x, y, r, road, id) {
     const options = {
       restitution: 0,
       friction: 0,
@@ -111,6 +111,7 @@ export function Plinko(element) {
     metter.road = {
       list: road,
       id: [],
+      ballId: id,
     };
     Composite.add(engine.world, metter);
     let texture = PIXI.Texture.from("./image/ball.svg?8");
@@ -212,8 +213,8 @@ export function Plinko(element) {
     });
 
     let scoreText = text.toString();
-    if(scoreText.replace(".", "").length < 3) {
-      scoreText += "x"
+    if (scoreText.replace(".", "").length < 3) {
+      scoreText += "x";
     }
     const label = new PIXI.Text(scoreText, style);
     label.anchor.set(0.5, 0.5);
@@ -236,17 +237,12 @@ export function Plinko(element) {
     app.stage.addChild(container);
 
     container.on("mouseover", function (e) {
-      let pro = globalFunc.selectFromText(
-        rowNumState,
-        levelState,
-        text,
-        "pro"
-      );
-      mutations.changeShowPro(true, text, pro)
+      let pro = globalFunc.selectFromText(rowNumState, levelState, text, "pro");
+      mutations.changeShowPro(true, text, pro);
     });
 
     container.on("mouseout", function (e) {
-      mutations.changeShowPro(false)
+      mutations.changeShowPro(false);
     });
 
     metter.metter = {
@@ -258,7 +254,7 @@ export function Plinko(element) {
     };
   }
 
-  function ScoreBoard(x, y, gap, text) {
+  function ScoreBoard(x, y, gap, text, ballID) {
     const options = {
       isStatic: true,
     };
@@ -374,24 +370,7 @@ export function Plinko(element) {
     });
 
     container.on("pointerdown", function (e) {
-      let c = globalFunc.selectFromText(rowNumState, levelState, text, "color");
-      let s = globalFunc.selectFromText(
-        rowNumState,
-        levelState,
-        text,
-        "shadow"
-      );
-      const redc = (c >> 16) & 255;
-      const greenc = (c >> 8) & 255;
-      const bluec = c & 255;
-
-      const reds = (s >> 16) & 255;
-      const greens = (s >> 8) & 255;
-      const blues = s & 255;
-
-      const cColor = `rgb(${redc}, ${greenc}, ${bluec})`;
-      const sColor = `rgb(${reds}, ${greens}, ${blues})`;
-      mutations.currentScore(text, cColor, sColor);
+      window.miniGameWujie.bus.$emit("openDialogBetRecord", {id:ballID,game:'Plinko'} );
     });
 
     if (parseFloat(text) > 1) {
@@ -622,7 +601,7 @@ export function Plinko(element) {
     return [pointIds, pointDirs];
   }
 
-  function UpdateScore(body) {
+  function UpdateScore(body, ballID) {
     let lastPos = canvasHeight / 3 / scale - 50 / scale;
     if (objects.length > 1) {
       lastPos = objects[objects.length - 1].body.position.y - 50 / scale;
@@ -647,7 +626,8 @@ export function Plinko(element) {
       maskX + maskWidth / 2,
       lastPos,
       maskWidth * scale,
-      text
+      text,
+      ballID
     );
 
     stopTween();
@@ -751,20 +731,20 @@ export function Plinko(element) {
       if (bodyA.label === "basket" && bodyB.label === "particle") {
         RemoveParticle(bodyB);
         BasketSplash(bodyA);
-        UpdateScore(bodyA);
+        UpdateScore(bodyA, bodyB.road.ballId);
         sendDataToVue(2);
       }
       if (bodyB.label === "basket" && bodyA.label === "particle") {
         RemoveParticle(bodyA);
         BasketSplash(bodyB);
-        UpdateScore(bodyB);
+        UpdateScore(bodyB, bodyA.road.ballId);
         sendDataToVue(1);
       }
     }
   }
 
   function sendDataToVue(data) {
-    bettingBus.emit(data)
+    bettingBus.emit(data);
   }
 
   function Road(body, point) {
@@ -832,7 +812,12 @@ export function Plinko(element) {
       for (let j = 1; j <= col; j++) {
         if (i < rows.length) {
           id++;
-          new Point(space + j * (gap + 8) - (GapWidth * MapGap + 4), i * gap, i, id);
+          new Point(
+            space + j * (gap + 8) - (GapWidth * MapGap + 4),
+            i * gap,
+            i,
+            id
+          );
         } else {
           if (j > 1) {
             new Basket(
@@ -935,23 +920,24 @@ export function Plinko(element) {
     rectangle.mask = mask;
   }
 
-  function add(target) {
+  function add(target, id) {
+    console.log(id);
     let [routes, dirRoute] = SearchRoute(target);
     routes.reverse();
     if (routes[0] === 1) {
-      new Particle(canvasWidth / 2 - 68, 0, ParticleRadius, dirRoute);
+      new Particle(canvasWidth / 2 - 68, 0, ParticleRadius, dirRoute, id);
     } else if (routes[0] === 2) {
       if (routes[1] === 5) {
         Math.random() > 0.5
-          ? new Particle(canvasWidth / 2, 0, ParticleRadius, dirRoute)
-          : new Particle(canvasWidth / 2 - 34, 0, ParticleRadius, dirRoute);
+          ? new Particle(canvasWidth / 2, 0, ParticleRadius, dirRoute, id)
+          : new Particle(canvasWidth / 2 - 34, 0, ParticleRadius, dirRoute, id);
       } else {
         Math.random() > 0.5
           ? new Particle(canvasWidth / 2, 0, ParticleRadius, dirRoute)
-          : new Particle(canvasWidth / 2 + 34, 0, ParticleRadius, dirRoute);
+          : new Particle(canvasWidth / 2 + 34, 0, ParticleRadius, dirRoute, id);
       }
     } else if (routes[0] === 3) {
-      new Particle(canvasWidth / 2 + 68, 0, ParticleRadius, dirRoute);
+      new Particle(canvasWidth / 2 + 68, 0, ParticleRadius, dirRoute, id);
     }
   }
 
