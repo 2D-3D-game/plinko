@@ -9,7 +9,7 @@ interface IResponse<T> {
 export const httpClient =  new HttpClient({
   baseURL: import.meta.env.DEV ? "/api" : location.origin,
   timeout: 10000,
-  isEncryption: true,
+  isEncryption: false,
   showConsole:true,
   requestInterceptors: [
     (config: any) => {

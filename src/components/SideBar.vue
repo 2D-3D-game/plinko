@@ -377,7 +377,7 @@ export default {
         manual: true,
         onSuccess(res) {
           playMp3("betStart");
-          plinko.add(res.state.index + 1, res.id);
+          plinko.add(res.state.path, res.state.point, res.id);
           bettingCount.value = bettingCount.value + 1;
 
           if (isAutoBetting.value && numberofbet.value > 0) {
