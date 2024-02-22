@@ -751,6 +751,7 @@ export function Plinko(element) {
   }
 
   function Road(body, point) {
+    let previousVelocity = { x: 0, y: 0 };
     Body.setStatic(body, true);
     if (!body.road.id.includes(point.id)) {
       const road = body.road.list.shift();
@@ -769,6 +770,20 @@ export function Plinko(element) {
         velocity = { x: 0.7, y: 0 };
       } else if (road === 5) {
         velocity = { x: -0.7, y: 0 };
+      } else if (road === 6) {
+        Body.setPosition(body, {
+          x: point.position.x,
+          y: point.position.y - point.circleRadius * 2,
+        });
+        velocity = { x: -0.5, y: -1.5 };
+        previousVelocity = { x: -0.5, y: -1.5 };
+      } else if (road === 7) {
+        Body.setPosition(body, {
+          x: point.position.x,
+          y: point.position.y - point.circleRadius * 2,
+        });
+        velocity = { x: 0.5, y: -1.5 };
+        previousVelocity = { x: 0.5, y: -1.5 };
       }
       setTimeout(() => {
         Body.setVelocity(body, velocity);
@@ -776,14 +791,7 @@ export function Plinko(element) {
       body.road.id.push(point.id);
     } else {
       setTimeout(() => {
-        Body.setPosition(body, {
-          x: point.position.x,
-          y: point.position.y - point.circleRadius * 2,
-        });
-        Body.setVelocity(body, {
-          x: -1.2,
-          y: -3,
-        });
+        Body.setVelocity(body, previousVelocity);
       }, 0);
     }
     Body.setStatic(body, false);
@@ -842,7 +850,7 @@ export function Plinko(element) {
         app.stage.position.x = (canvasWidth - scale * canvasWidth) / 2 - 200;
       } else {
         if (newWindowWidth > 350) {
-          app.stage.position.x = (canvasWidth - scale * canvasWidth) / 2 - 225;
+          app.stage.position.x = (canvasWidth - scale * canvasWidth) / 2 - 220;
         } else {
           app.stage.position.x = (canvasWidth - scale * canvasWidth) / 2 - 250;
         }
@@ -923,103 +931,123 @@ export function Plinko(element) {
     rectangle.mask = mask;
   }
 
-  // function add(path, firstPoint, id) {
-  //   let dirRoute = [];
-  //   let firstFallType = false;
-  //   if (firstPoint === "1") {
-  //     Math.random() > 0.5 ? dirRoute.push(1, 5) : dirRoute.push(3);
-  //     for (let i = 1; i < path.length; i++) {
-  //       if (path[i] === "L") {
-  //         Math.random() > 0.5 ? dirRoute.push(0, 4) : dirRoute.push(2);
-  //       } else {
-  //         Math.random() > 0.5 ? dirRoute.push(1, 5) : dirRoute.push(3);
-  //       }
-  //     }
-  //   } else if (firstPoint === "2") {
-  //     for (let i = 0; i < path.length; i++) {
-  //       if (path[i] === "L") {
-  //         Math.random() > 0.5
-  //           ? (dirRoute.push(0, 4), (firstFallType = true))
-  //           : (dirRoute.push(2), (firstFallType = false));
-  //       } else {
-  //         Math.random() > 0.5 ? dirRoute.push(1, 5) : dirRoute.push(3);
-  //       }
-  //     }
-  //   } else {
-  //     Math.random() > 0.5 ? dirRoute.push(0, 4) : dirRoute.push(2);
-  //     for (let i = 1; i < path.length; i++) {
-  //       if (path[i] === "L") {
-  //         Math.random() > 0.5 ? dirRoute.push(0, 4) : dirRoute.push(2);
-  //       } else {
-  //         Math.random() > 0.5 ? dirRoute.push(1, 5) : dirRoute.push(3);
-  //       }
-  //     }
-  //   }
-  //   if (firstPoint === "1") {
-  //     new Particle(canvasWidth / 2 - 68, 0, ParticleRadius, dirRoute, id);
-  //   } else if (firstPoint === "2") {
-  //     if (path[1] === "L") {
-  //       Math.random() > 0.5
-  //         ? new Particle(canvasWidth / 2, 0, ParticleRadius, dirRoute, id)
-  //         : new Particle(
-  //             canvasWidth / 2 - 34,
-  //             0,
-  //             ParticleRadius,
-  //             dirRoute.slice(2),
-  //             id
-  //           );
-  //     } else {
-  //       Math.random() > 0.5
-  //         ? new Particle(canvasWidth / 2, 0, ParticleRadius, dirRoute, id)
-  //         : new Particle(
-  //             canvasWidth / 2 + 34,
-  //             0,
-  //             ParticleRadius,
-  //             dirRoute.slice(2),
-  //             id
-  //           );
-  //     }
-  //   } else if (firstPoint === 3) {
-  //     new Particle(canvasWidth / 2 + 68, 0, ParticleRadius, dirRoute, id);
-  //   }
-  // }
-
   function add(path, firstPoint, id) {
     let dirRoute = [];
     let firstFallType = false;
-    const getDirection = (isLeft) => (isLeft ? [0, 4] : [1, 5]);
-    const addRandomDirection = (isLeft) => {
-      const direction = getDirection(isLeft);
-      Math.random() > 0.5 ? dirRoute.push(...direction) : dirRoute.push(2);
-    };
     if (firstPoint === "1") {
       Math.random() > 0.5 ? dirRoute.push(1, 5) : dirRoute.push(3);
+      for (let i = 1; i < path.length; i++) {
+        if (path[i] === "L") {
+          Math.random() > 0.4
+            ? dirRoute.push(0, 4)
+            : Math.random() > 0.8
+            ? dirRoute.push(6)
+            : dirRoute.push(2);
+        } else {
+          Math.random() > 0.4
+            ? dirRoute.push(1, 5)
+            : Math.random() > 0.8
+            ? dirRoute.push(7)
+            : dirRoute.push(3);
+        }
+      }
     } else if (firstPoint === "2") {
-      addRandomDirection(path[1] === "L");
-      firstFallType = path[1] === "L";
+      for (let i = 0; i < path.length; i++) {
+        if (path[i] === "L") {
+          Math.random() > 0.5
+            ? (dirRoute.push(0, 4), (firstFallType = true))
+            : (dirRoute.push(2), (firstFallType = false));
+        } else {
+          Math.random() > 0.5
+            ? (dirRoute.push(1, 5), (firstFallType = true))
+            : (dirRoute.push(3), (firstFallType = false));
+        }
+      }
     } else {
-      addRandomDirection(true);
-    }
-    for (let i = 1; i < path.length; i++) {
-      if (path[i] === "L") {
-        addRandomDirection(firstPoint !== "2" || firstFallType);
-      } else {
-        addRandomDirection(false);
+      Math.random() > 0.5 ? dirRoute.push(0, 4) : dirRoute.push(2);
+      for (let i = 1; i < path.length; i++) {
+        if (path[i] === "L") {
+          Math.random() > 0.4
+            ? dirRoute.push(0, 4)
+            : Math.random() > 0.8
+            ? dirRoute.push(6)
+            : dirRoute.push(2);
+        } else {
+          Math.random() > 0.4
+            ? dirRoute.push(1, 5)
+            : Math.random() > 0.8
+            ? dirRoute.push(7)
+            : dirRoute.push(3);
+        }
       }
     }
-    let xPos;
-    switch (firstPoint) {
-      case "1":
-        xPos = canvasWidth / 2 - 68;
-        break;
-      case "2":
-        xPos = path[1] === "L" ? canvasWidth / 2 - 34 : canvasWidth / 2 + 34;
-        break;
-      default:
-        xPos = canvasWidth / 2 + 68;
+    console.log(dirRoute);
+    if (firstPoint === "1") {
+      new Particle(canvasWidth / 2 - 68, 0, ParticleRadius, dirRoute, id);
+    } else if (firstPoint === "2") {
+      if (path[1] === "L") {
+        Math.random() > 0.1
+          ? new Particle(canvasWidth / 2, 0, ParticleRadius, dirRoute, id)
+          : new Particle(
+              canvasWidth / 2 - 34,
+              0,
+              ParticleRadius,
+              dirRoute.slice(2),
+              id
+            );
+      } else {
+        Math.random() > 0.1
+          ? new Particle(canvasWidth / 2, 0, ParticleRadius, dirRoute, id)
+          : new Particle(
+              canvasWidth / 2 + 34,
+              0,
+              ParticleRadius,
+              dirRoute.slice(2),
+              id
+            );
+      }
+    } else if (firstPoint === "3") {
+      new Particle(canvasWidth / 2 + 68, 0, ParticleRadius, dirRoute, id);
     }
-    new Particle(xPos, 0, ParticleRadius, dirRoute, id);
   }
+
+  // function add(path, firstPoint, id) {
+  //   let dirRoute = [];
+  //   let firstFallType = false;
+  //   const getDirection = (isLeft) => (isLeft ? [0, 4] : [1, 5]);
+  //   const addRandomDirection = (isLeft) => {
+  //     const direction = getDirection(isLeft);
+  //     Math.random() > 0.5 ? dirRoute.push(...direction) : dirRoute.push(2);
+  //   };
+  //   if (firstPoint === "1") {
+  //     Math.random() > 0.5 ? dirRoute.push(1, 5) : dirRoute.push(3);
+  //   } else if (firstPoint === "2") {
+  //     addRandomDirection(path[1] === "L");
+  //     firstFallType = path[1] === "L";
+  //   } else {
+  //     addRandomDirection(true);
+  //   }
+  //   for (let i = 1; i < path.length; i++) {
+  //     if (path[i] === "L") {
+  //       addRandomDirection(firstPoint !== "2" || firstFallType);
+  //     } else {
+  //       addRandomDirection(false);
+  //     }
+  //   }
+  //   let xPos;
+  //   switch (firstPoint) {
+  //     case "1":
+  //       xPos = canvasWidth / 2 - 68;
+  //       break;
+  //     case "2":
+  //       xPos = path[1] === "L" ? canvasWidth / 2 - 34 : canvasWidth / 2 + 34;
+  //       break;
+  //     default:
+  //       xPos = canvasWidth / 2 + 68;
+  //   }
+  //   new Particle(xPos, 0, ParticleRadius, dirRoute, id);
+  // }
+
   function clear() {
     Composite.clear(engine.world);
     app.stage.removeChildren();

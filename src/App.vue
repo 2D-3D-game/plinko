@@ -125,6 +125,7 @@ export default {
 
     //You will receive the latest updates here
     function propsChange(newObj) {
+      console.log("🚀 ~ propsChange ~ newObj:", newObj)
       window.miniGameWujie.props = Object.assign({}, window.miniGameWujie.props, newObj)
       appStore.changeCurrencyId(window.miniGameWujie.props.currencyId)
       appStore.changeCurrentBalance(window.miniGameWujie.props.balance)
@@ -132,6 +133,7 @@ export default {
       appStore.changeRate(window.miniGameWujie.props.rate)
       appStore.changeCurrencyPrefix(window.miniGameWujie.props.currencyPrefix)
       appStore.changeDecimalNum(window.miniGameWujie.props.decimalNum)
+      appStore.changeLogoUrl(window.miniGameWujie.props.logoUrl)
     }
 
     onMounted(() => {

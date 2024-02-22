@@ -27,11 +27,9 @@ export const useAppStore = defineStore('app', () => {
     function changeCurrencyId(v: string) {
         currency_id.value = v
     }
-
     function changeCurrentBalance(v:string){
       currentBalance.value = v
     }
-
     function changeToken(v:string){
       token.value = v
     }
@@ -44,6 +42,9 @@ export const useAppStore = defineStore('app', () => {
     function changeDecimalNum(v:number){
       decimalNum.value = v
     }
+    function changeLogoUrl(v:string){
+      logoUrl.value = v
+    }
 
     return {
         token,
@@ -54,6 +55,7 @@ export const useAppStore = defineStore('app', () => {
         currencyPrefix,
         isLogin,
         decimalNum,
+        changeLogoUrl,
         changeCurrencyId,
         changeCurrentBalance,
         changeToken,
