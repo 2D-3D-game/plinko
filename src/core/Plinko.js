@@ -4,6 +4,7 @@ import * as TWEEN from "@tweenjs/tween.js";
 import { GlobalFunc } from "./GlobalFunc";
 import { store, mutations } from "./Store";
 import { bettingBus } from "~/core/bus";
+import { GAMES_LIST_ENUM } from 'feie-ui'
 
 export function Plinko(element) {
   /********** Begin Settings For Engine, PIXI  **********/
@@ -372,7 +373,7 @@ export function Plinko(element) {
     container.on("pointerdown", function (e) {
       window.miniGameWujie.bus.$emit("openDialogBetRecord", {
         id: ballID,
-        game: "Plinko",
+        game: GAMES_LIST_ENUM.PLINKO,
       });
     });
 
@@ -941,13 +942,17 @@ export function Plinko(element) {
           Math.random() > 0.4
             ? dirRoute.push(0, 4)
             : Math.random() > 0.8
-            ? dirRoute.push(6)
+            ? path[i - 1] === 4 || path[i - 1] === 5
+              ? dirRoute.push(2)
+              : dirRoute.push(6)
             : dirRoute.push(2);
         } else {
           Math.random() > 0.4
             ? dirRoute.push(1, 5)
             : Math.random() > 0.8
-            ? dirRoute.push(7)
+            ? path[i - 1] === 4 || path[i - 1] === 5
+              ? dirRoute.push(3)
+              : dirRoute.push(7)
             : dirRoute.push(3);
         }
       }
@@ -970,13 +975,17 @@ export function Plinko(element) {
           Math.random() > 0.4
             ? dirRoute.push(0, 4)
             : Math.random() > 0.8
-            ? dirRoute.push(6)
+            ? path[i - 1] === 4 || path[i - 1] === 5
+              ? dirRoute.push(2)
+              : dirRoute.push(6)
             : dirRoute.push(2);
         } else {
           Math.random() > 0.4
             ? dirRoute.push(1, 5)
             : Math.random() > 0.8
-            ? dirRoute.push(7)
+            ? path[i - 1] === 4 || path[i - 1] === 5
+              ? dirRoute.push(3)
+              : dirRoute.push(7)
             : dirRoute.push(3);
         }
       }

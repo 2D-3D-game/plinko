@@ -137,6 +137,7 @@ export default {
     }
 
     onMounted(() => {
+      console.log('小游戏加载完成✅');
       window.miniGameWujie.bus.$on('channelMessageWujie', propsChange)
       window.miniGameWujie.bus.$emit('loaded')
     })

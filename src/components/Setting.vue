@@ -140,7 +140,7 @@
       </div> -->
       <!-- <div :class="'divider'"></div> -->
     </div>
-    <div :class="'footer-image'">
+    <div v-if="logoUrl" :class="'footer-image'">
       <img :src="logoSrc" alt="Image" width="68" height="25" />
     </div>
     <button :style="{ background: 'transparent', border: 'none' }" @click="showFairness">
@@ -160,6 +160,7 @@ import { mutations, store } from "../core/Store";
 import RealTimeStatistics from "./Modals/RealTimeStatistics.vue";
 import { useAppStore } from "~/store/app";
 import { storeToRefs } from "pinia";
+import { GAMES_LIST_ENUM } from 'feie-ui'
 
 export default {
   components: {
@@ -213,7 +214,7 @@ export default {
     const isAnimation = ref(false);
     const volumn = ref(50);
     const rectComponent = ref(null);
-    const { logoSrc ,isLogin} = storeToRefs(useAppStore())
+    const { logoSrc ,isLogin,logoUrl} = storeToRefs(useAppStore())
 
     const changeImage = () => {
       isFavorite.value = !isFavorite.value;
@@ -265,7 +266,7 @@ export default {
       if(!isLogin.value){
         return window.miniGameWujie.bus.$emit('openRegister')
       }
-      window.miniGameWujie.bus.$emit('openProvablyFair','Plinko')
+      window.miniGameWujie.bus.$emit('openProvablyFair',GAMES_LIST_ENUM.PLINKO)
       scrollUp();
     };
 
@@ -289,6 +290,7 @@ export default {
       volumn,
       rectComponent,
       logoSrc,
+      logoUrl,
       changeImage,
       showSetting,
       liveSetting,

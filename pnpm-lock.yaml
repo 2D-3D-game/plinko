@@ -18,8 +18,8 @@ dependencies:
     specifier: ^6.2.1
     version: 6.2.1
   feie-ui:
-    specifier: ^0.0.15
-    version: 0.0.15
+    specifier: ^0.0.26
+    version: 0.0.26
   matter-js:
     specifier: ^0.19.0
     version: 0.19.0
@@ -1112,8 +1112,8 @@ packages:
       reusify: 1.0.4
     dev: true
 
-  /feie-ui@0.0.15:
-    resolution: {integrity: sha512-Pou3H9Fs/5I0sahHCPZdNBWN7wUUs3+V6ZOz17RpU7FEJ2n3M1M17mqFT2xVP2Ve2LHXqTLM7TqKYEdLtQSkLA==}
+  /feie-ui@0.0.26:
+    resolution: {integrity: sha512-tTGGj2jH22HY4y9cbW7P9s/hfhXeXSd1ra4qmOmipDjwMfwdCKLZo6jYlbqtnHPDVT4cb/RBNF0c97c43DbkNA==}
     dependencies:
       axios: 1.6.7
       cbor-js: 0.1.0

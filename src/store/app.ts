@@ -17,7 +17,7 @@ export const useAppStore = defineStore('app', () => {
     const currencyPrefix = ref(window.miniGameWujie.props.currencyPrefix)
     const decimalNum = ref(window.miniGameWujie.props.decimalNum)
 
-    const logoSrc = computed(()=>staticDomain.value + '/' + logoUrl.value )
+    const logoSrc = computed(()=> staticDomain.value + '/' + logoUrl.value )
 
     // const { data: balanceData, run: runGetBalance, loading: balanceLoading } = useRequest(ApiMemberBalance,{
     //     ready:isLogin
@@ -51,6 +51,7 @@ export const useAppStore = defineStore('app', () => {
         currency_id,
         currentBalance,
         logoSrc,
+        logoUrl,
         rate,
         currencyPrefix,
         isLogin,
