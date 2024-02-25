@@ -29,7 +29,8 @@
               </div>
               <div :style="{ position: 'relative' }">
                 <input class="profit-input" type="text" :value="proText" readonly />
-                <img src="/image/bit.svg" alt="" :style="{
+                <img :src="`https://d2utx4nptvgikt.cloudfront.net/currency/${currency_id}.webp`" alt="" width="16"
+            height="16" :style="{
                   position: 'absolute',
                   top: '50%',
                   transform: 'translateY(-50%)',
@@ -45,7 +46,7 @@
               }">{{ $t("plinko_showPro_chance") }}</span>
               <div :style="{ position: 'relative' }">
                 <input class="profit-input" type="text" :value="proValue" readonly />
-                <img src="/image/percent.svg" alt="" :style="{
+                <img :src="'./image/percent.svg'" alt="" :style="{
                   position: 'absolute',
                   top: '50%',
                   transform: 'translateY(-50%)',
@@ -82,6 +83,7 @@ import MaxValue from "./components/Modals/MaxValue.vue";
 import GameInfo from "./components/Modals/GameInfo.vue";
 import Hotkeys from "./components/Modals/Hotkeys.vue";
 import { useAppStore } from '~/store/app'
+import { storeToRefs } from "pinia";
 
 
 export default {
@@ -122,6 +124,7 @@ export default {
   },
   setup() {
     const appStore = useAppStore()
+    const {currency_id} = storeToRefs(appStore)
 
     //You will receive the latest updates here
     function propsChange(newObj) {
@@ -145,6 +148,10 @@ export default {
     onUnmounted(() => {
       window.miniGameWujie.bus.$off('channelMessageWujie', propsChange)
     })
+
+    return {
+      currency_id
+    }
   }
 };
 </script>

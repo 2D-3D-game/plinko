@@ -199,7 +199,7 @@ img.betting-image {
 .typeButton span {
   font-size: 14px;
 }
-.typeButton:hover {
+.typeButton:hover:not(.isPhone) {
   background-color: #2f4552;
   border-radius: 1000px;
 }

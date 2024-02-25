@@ -5,15 +5,22 @@ interface IResponse<T> {
   data: T
 }
 
+function getDevice() {
+  const isMobile = window.innerWidth <= 768
+  if (isMobile)
+    return 25
+  else return 24
+}
 
 export const httpClient =  new HttpClient({
   baseURL: import.meta.env.DEV ? "/api" : location.origin,
   timeout: 10000,
   isEncryption: false,
+  isSign: true,
   showConsole:true,
   requestInterceptors: [
     (config: any) => {
-      config.headers.d = 24
+      config.headers.d = getDevice()
       config.headers.t = window.miniGameWujie.props.token || ""
       config.headers.lang = window.miniGameWujie.props.backendLang || "zh_CN"
 

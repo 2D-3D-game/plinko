@@ -9,8 +9,8 @@
  * If the balance is insufficient, it will prompt that the betting information cannot be
  */
 
-export function initWujie(){
-  window.miniGameWujie = import.meta.env.DEV ? {
+export function initWujie() {
+  window.miniGameWujie = window.$wujie ? window.$wujie : {
     props: {
       "staticDomain": "https://d2utx4nptvgikt.cloudfront.net",
       "logoUrl": "brand/1706678673680.webp",
@@ -21,22 +21,20 @@ export function initWujie(){
       /** balance is the currency balance currently selected by the user */
       "balance": "0.00",
       /** token is used to determine whether to log in */
-      "token": "t:tvJ8GO4yCVgpi12xHgQTSCD5",
-      "getBalanceData": () => {},
-      "openNotify": () => {},
+      "token": "t:igAiFj5N4Exrd0bD9dpZeJdA",
+      "getBalanceData": () => { },
+      "openNotify": () => { },
       /** 汇率 */
       rate: '1',
       /** 货币符号 */
       currencyPrefix: '***',
-      decimalNum:2
+      decimalNum: 2
     },
     "bus": {
       "$on": () => { },
       "$emit": () => { },
       "$off": () => { }
     }
-  } : window.$wujie;
-
-  // window.miniGameWujie = window.$wujie
+  }
 }
 

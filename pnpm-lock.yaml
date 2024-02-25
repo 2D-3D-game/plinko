@@ -18,8 +18,8 @@ dependencies:
     specifier: ^6.2.1
     version: 6.2.1
   feie-ui:
-    specifier: ^0.0.26
-    version: 0.0.26
+    specifier: ^0.0.32
+    version: 0.0.32
   matter-js:
     specifier: ^0.19.0
     version: 0.19.0
@@ -83,6 +83,10 @@ packages:
       '@babel/helper-string-parser': 7.23.4
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
+
+  /@cnwhy/base64@0.2.4:
+    resolution: {integrity: sha512-V/7zuauRdGyn7/hGHUYQjeGgOKPMh7p0q756YGxfamYURda1Wu4dja7gQaoVEPLworbqDEtCecrnNGXD6QUVXA==}
+    dev: false
 
   /@esbuild/android-arm64@0.18.20:
     resolution: {integrity: sha512-Nz4rJcchGDtENV0eMKUNa6L12zz2zBDXuhj/Vjh18zGqB44Bi7MBMSXjgunJgjRhCmKOjnPuZp4Mb6OKqtMHLQ==}
@@ -1112,9 +1116,10 @@ packages:
       reusify: 1.0.4
     dev: true
 
-  /feie-ui@0.0.26:
-    resolution: {integrity: sha512-tTGGj2jH22HY4y9cbW7P9s/hfhXeXSd1ra4qmOmipDjwMfwdCKLZo6jYlbqtnHPDVT4cb/RBNF0c97c43DbkNA==}
+  /feie-ui@0.0.32:
+    resolution: {integrity: sha512-DvPYuUaql7fqXvWi3X+XJeHrgowuusI9DBXFvWDM0ukYWCfe3TaJV1d1fC2Y/5eAL2CIxFVFzvHsYrE9yBjPOg==}
     dependencies:
+      '@cnwhy/base64': 0.2.4
       axios: 1.6.7
       cbor-js: 0.1.0
     transitivePeerDependencies:

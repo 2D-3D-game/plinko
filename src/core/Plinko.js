@@ -4,7 +4,7 @@ import * as TWEEN from "@tweenjs/tween.js";
 import { GlobalFunc } from "./GlobalFunc";
 import { store, mutations } from "./Store";
 import { bettingBus } from "~/core/bus";
-import { GAMES_LIST_ENUM } from 'feie-ui'
+import { GAMES_LIST_ENUM } from "feie-ui";
 
 export function Plinko(element) {
   /********** Begin Settings For Engine, PIXI  **********/
@@ -757,34 +757,23 @@ export function Plinko(element) {
     if (!body.road.id.includes(point.id)) {
       const road = body.road.list.shift();
       let velocity = { x: 0, y: 0 };
-      if (road === 0) {
-        velocity = { x: -2.4, y: -2 };
-      } else if (road === 1) {
-        velocity = { x: 2.4, y: -2 };
+      if (road === 0 || road === 1) {
+        velocity = { x: road === 0 ? -2.3 : 2.3, y: -3 };
       } else if (road === 2 || road === 3) {
         Body.setPosition(body, {
           x: point.position.x,
           y: point.position.y - point.circleRadius * 2,
         });
         velocity = { x: road === 2 ? -1.2 : 1.2, y: -3 };
-      } else if (road === 4) {
-        velocity = { x: 0.7, y: 0 };
-      } else if (road === 5) {
-        velocity = { x: -0.7, y: 0 };
-      } else if (road === 6) {
+      } else if (road === 4 || road === 5) {
+        velocity = { x: road === 4 ? 0.7 : -0.7, y: 0 };
+      } else if (road === 6 || road === 7) {
         Body.setPosition(body, {
           x: point.position.x,
           y: point.position.y - point.circleRadius * 2,
         });
-        velocity = { x: -0.5, y: -1.5 };
-        previousVelocity = { x: -0.5, y: -1.5 };
-      } else if (road === 7) {
-        Body.setPosition(body, {
-          x: point.position.x,
-          y: point.position.y - point.circleRadius * 2,
-        });
-        velocity = { x: 0.5, y: -1.5 };
-        previousVelocity = { x: 0.5, y: -1.5 };
+        velocity = { x: road === 6 ? -0.7 : 0.7, y: -1.5 };
+        previousVelocity = { x: road === 6 ? -0.7 : 0.7, y: -1.5 };
       }
       setTimeout(() => {
         Body.setVelocity(body, velocity);
@@ -932,9 +921,42 @@ export function Plinko(element) {
     rectangle.mask = mask;
   }
 
-  function add(path, firstPoint, id) {
+  function getStartPositionAndRoute(firstpoint, route) {
+    let startPosition = 0;
+    let ballRoute = [];
+    const frequency = 0.1;
+    if (firstpoint === "1") {
+      startPosition = canvasWidth / 2 - 68;
+      ballRoute = route;
+    } else if (firstpoint === "2") {
+      let compareNumber = Math.random();
+      if (compareNumber > frequency) {
+        startPosition = canvasWidth / 2;
+        ballRoute = route;
+      } else {
+        if (route[0] === 0) {
+          startPosition = canvasWidth / 2 - 34;
+          ballRoute = route.slice(2);
+        } else if (route[0] === 1) {
+          startPosition = canvasWidth / 2 + 34;
+          ballRoute = route.slice(2);
+        } else if (route[0] === 2) {
+          startPosition = canvasWidth / 2 - 34;
+          ballRoute = route.slice(1);
+        } else if (route[0] === 3) {
+          startPosition = canvasWidth / 2 + 34;
+          ballRoute = route.slice(1);
+        }
+      }
+    } else if (firstpoint === "3") {
+      ballRoute = route;
+      startPosition = canvasWidth / 2 + 68;
+    }
+    return { startPosition, ballRoute };
+  }
+
+  function getRoute(firstPoint, path) {
     let dirRoute = [];
-    let firstFallType = false;
     if (firstPoint === "1") {
       Math.random() > 0.5 ? dirRoute.push(1, 5) : dirRoute.push(3);
       for (let i = 1; i < path.length; i++) {
@@ -959,16 +981,12 @@ export function Plinko(element) {
     } else if (firstPoint === "2") {
       for (let i = 0; i < path.length; i++) {
         if (path[i] === "L") {
-          Math.random() > 0.5
-            ? (dirRoute.push(0, 4), (firstFallType = true))
-            : (dirRoute.push(2), (firstFallType = false));
+          Math.random() > 0.5 ? dirRoute.push(0, 4) : dirRoute.push(2);
         } else {
-          Math.random() > 0.5
-            ? (dirRoute.push(1, 5), (firstFallType = true))
-            : (dirRoute.push(3), (firstFallType = false));
+          Math.random() > 0.5 ? dirRoute.push(1, 5) : dirRoute.push(3);
         }
       }
-    } else {
+    } else if (firstPoint === "3") {
       Math.random() > 0.5 ? dirRoute.push(0, 4) : dirRoute.push(2);
       for (let i = 1; i < path.length; i++) {
         if (path[i] === "L") {
@@ -990,72 +1008,20 @@ export function Plinko(element) {
         }
       }
     }
-    console.log(dirRoute);
-    if (firstPoint === "1") {
-      new Particle(canvasWidth / 2 - 68, 0, ParticleRadius, dirRoute, id);
-    } else if (firstPoint === "2") {
-      if (path[1] === "L") {
-        Math.random() > 0.1
-          ? new Particle(canvasWidth / 2, 0, ParticleRadius, dirRoute, id)
-          : new Particle(
-              canvasWidth / 2 - 34,
-              0,
-              ParticleRadius,
-              dirRoute.slice(2),
-              id
-            );
-      } else {
-        Math.random() > 0.1
-          ? new Particle(canvasWidth / 2, 0, ParticleRadius, dirRoute, id)
-          : new Particle(
-              canvasWidth / 2 + 34,
-              0,
-              ParticleRadius,
-              dirRoute.slice(2),
-              id
-            );
-      }
-    } else if (firstPoint === "3") {
-      new Particle(canvasWidth / 2 + 68, 0, ParticleRadius, dirRoute, id);
-    }
+    return dirRoute;
   }
 
-  // function add(path, firstPoint, id) {
-  //   let dirRoute = [];
-  //   let firstFallType = false;
-  //   const getDirection = (isLeft) => (isLeft ? [0, 4] : [1, 5]);
-  //   const addRandomDirection = (isLeft) => {
-  //     const direction = getDirection(isLeft);
-  //     Math.random() > 0.5 ? dirRoute.push(...direction) : dirRoute.push(2);
-  //   };
-  //   if (firstPoint === "1") {
-  //     Math.random() > 0.5 ? dirRoute.push(1, 5) : dirRoute.push(3);
-  //   } else if (firstPoint === "2") {
-  //     addRandomDirection(path[1] === "L");
-  //     firstFallType = path[1] === "L";
-  //   } else {
-  //     addRandomDirection(true);
-  //   }
-  //   for (let i = 1; i < path.length; i++) {
-  //     if (path[i] === "L") {
-  //       addRandomDirection(firstPoint !== "2" || firstFallType);
-  //     } else {
-  //       addRandomDirection(false);
-  //     }
-  //   }
-  //   let xPos;
-  //   switch (firstPoint) {
-  //     case "1":
-  //       xPos = canvasWidth / 2 - 68;
-  //       break;
-  //     case "2":
-  //       xPos = path[1] === "L" ? canvasWidth / 2 - 34 : canvasWidth / 2 + 34;
-  //       break;
-  //     default:
-  //       xPos = canvasWidth / 2 + 68;
-  //   }
-  //   new Particle(xPos, 0, ParticleRadius, dirRoute, id);
-  // }
+  function add(path, firstPoint, id) {
+    let initialRoute = getRoute(firstPoint, path);
+    let optimize = getStartPositionAndRoute(firstPoint, initialRoute);
+    new Particle(
+      optimize.startPosition,
+      0,
+      ParticleRadius,
+      optimize.ballRoute,
+      id
+    );
+  }
 
   function clear() {
     Composite.clear(engine.world);

@@ -5,7 +5,7 @@
         :class="[
           'typeButton',
           isAutoBetting ? 'disabled' : '',
-          { betTypeActive: isManualButton },
+          { betTypeActive: isManualButton ,isPhone},
         ]"
         @click="activeButton('manualButton')"
         :disabled="isAutoBetting"
@@ -16,7 +16,7 @@
         :class="[
           'typeButton',
           isAutoBetting ? 'disabled' : '',
-          { betTypeActive: isAutoButton },
+          { betTypeActive: isAutoButton ,isPhone},
         ]"
         @click="activeButton('autoButton')"
         :disabled="isAutoBetting"
@@ -43,13 +43,12 @@
               isAutoBetting ? 'disabled' : '',
               { warning: isError || isAmountOverBalance },
             ]"
-            :ref="'betAmountInput'"
             v-model="amount"
             type="number"
             min="0"
             step="0.00000001"
-            @focus="selectInput"
-            @focusout="changeAmount"
+            @focus="onAmountInputFocus"
+            @blur="onAmountInputBlur"
             @change="changeState"
             :disabled="isAutoBetting"
           />
@@ -273,6 +272,7 @@ import { useRequest } from "vue-request";
 import { bettingBus } from "~/core/bus";
 import { mul, toFixed } from "~/utils/number";
 import { NineSlicePlane } from "pixi.js";
+import {useWindowSize} from '@vueuse/core'
 
 // static limit
 const autoBetTimesMax = 180
@@ -301,6 +301,7 @@ export default {
       decimalNum,
     } = storeToRefs(appStore);
     const { t } = useI18n();
+    const { width:windowWidth } = useWindowSize()
 
     const isManualButton = ref(true);
     const isAutoButton = ref(false);
@@ -315,7 +316,6 @@ export default {
     const rowValues = ["8", "9", "10", "11", "12", "13", "14", "15", "16"];
     let intervalId;
     const bettingCount = ref(0);
-    const betAmountInput = ref(null);
     const statisticsComponent = ref(null);
     const amountorder = ref(null);
     const betbuttonorder = ref(null);
@@ -329,6 +329,7 @@ export default {
     const isAmountOverBalance = computed(
       () => +amount.value > +currentBalance.value
     );
+    const isPhone = computed(()=> windowWidth.value <=768)
     const isBetting = computed(() => bettingCount.value > 0);
     const isInfinitive = computed(() => numberofbet.value === 0);
     const amountMulRate = computed(() =>
@@ -345,12 +346,7 @@ export default {
       plinko.map();
     };
 
-    const selectInput = () => {
-      const inputField = betAmountInput.value;
-      if (inputField) {
-        inputField.select();
-      }
-    };
+
     // play mp3
     const playMp3 = (type) => {
       if(type === "betStart") {
@@ -496,6 +492,15 @@ export default {
       }
     };
 
+    const onAmountInputFocus = () => {
+      if(+amount.value === 0){
+        amount.value = ''
+      }
+    };
+    const onAmountInputBlur = ()=>{
+      changeAmount()
+    }
+
     const changeAmount = () => {
       if(amount.value > currentBalance.value) {
         amount.value = currentBalance.value
@@ -550,7 +555,6 @@ export default {
       rowValues,
       bettingCount,
       isBetting,
-      betAmountInput,
       statisticsComponent,
       isMaximum,
       amountorder,
@@ -564,12 +568,14 @@ export default {
       amountMulRate,
       betBtnDisabled,
       validNumberofBet,
+      isPhone,
       activeButton,
-      selectInput,
+      onAmountInputFocus,
       betAmountTimes,
       changeState,
       bet,
       changeAmount,
+      onAmountInputBlur
     };
   },
 };
